@@ -11,5 +11,7 @@ int main(void)
     {
         PORTB ^= (1 << PB5); // toggle LED
         _delay_ms(500);
+        PORTB ^=(0 << PB5); // turn off LED
+        _delay_ms(500);
     }
 }
