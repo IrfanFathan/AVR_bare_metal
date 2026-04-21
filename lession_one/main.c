@@ -9,9 +9,9 @@ int main(void)
 
     while(1)
     {
-        PORTB ^= (1 << PB5); // toggle LED
+        PORTB ^= (1 << PB5); // set the pin high to turn on LED
         _delay_ms(500);
         PORTB ^=(0 << PB5); // turn off LED
-        _delay_ms(500);
+        _delay_ms(500); 
     }
 }
