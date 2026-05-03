@@ -15,14 +15,18 @@
 int main(void)
 {
    DDRD = 0xFF; // Set all pins on PORTD as output
-   unsigned char segment[10] = {0x3F, 0x06, 0x5B, 0x4F, 0x66, 0x6D, 0x7D, 0x07, 0x7F, 0x6F}, i;  
+   unsigned char segment[10] = {0x3F, 0x06, 0x5B, 0x4F, 0x66,
+                                0x6D, 0x7D, 0x07, 0x7F, 0x6F}, // It corsesponding values of  7 segment values , where the values in heaxadecail
+       i;
    while (1)
    {
+
       for (i = 0; i < 10; i++)
       {
-         PORTD = segment[i];
-         _delay_ms(500);
+         PORTD = segment[i]; // It show value in PORT D
+         _delay_ms(1000);    // Added delay for that
       }
    }
+
    return 0;
 }
