@@ -1,3 +1,13 @@
+/*************************************************
+ * Program   : LED Blink
+ * Author    : Irfan Fathan M
+ * Date      : 02 May 2026
+ * MCU       : ATmega328P (16 MHz)
+ *
+ * Description:
+ * Blinks a 7-segment display connected to PORTD, counting from 0 to 9 with a 500ms delay.
+ *************************************************/
+
 #define F_CPU 16000000UL
 #include <avr/io.h>
 #include <util/delay.h>
