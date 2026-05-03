@@ -1,0 +1,20 @@
+{
+  "languages": {
+    "C": {
+      "language_servers": ["clangd"]
+    }
+  },
+  "lsp": {
+    "clangd": {
+      "binary": {
+        "path": "clangd"
+      },
+      "initialization_options": {
+        "fallbackFlags": [
+          "-mmcu=atmega328p",
+          "-I/usr/lib/avr/include"
+        ]
+      }
+    }
+  }
+}
