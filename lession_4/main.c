@@ -16,59 +16,52 @@
 
 void lcd_data(unsigned char data)
 {
-    // Put character data on the LCD data bus.
-    PORTD = data;
-    // RS=1 selects data register, RW=0 writes to LCD.
-    PORTB |= (1 << PB0);
-    PORTB |= (1 << PB1);
-    // Toggle E to latch the byte into the LCD.
-    PORTB &= ~(1 << PB2);
+    PORTD = data;        // Place character data on data bus (Port D)
+    PORTB |= (1 << PB0); // Set RS high to select data register mode
+    PORTB |= (1 << PB1); // Set RW high for read operation
+    PORTB |= (1 << PB2); // Set E high to enable data latch
     _delay_ms(10);
-    PORTB |= (1 << PB2);
-};
+    PORTB &= ~(1 << PB2); // Set E low to complete the write cycle
+}
 
 void lcd_cmd(unsigned char command)
 {
-    // Put command byte on the LCD data bus.
-    PORTD = command;
-    // RS=0 selects instruction register, RW=0 writes to LCD.
-    PORTB &= ~(1 << PB0);
-    PORTB |= (1 << PB1);
-    // Toggle E to execute the command.
-    PORTB &= ~(1 << PB2);
+    PORTD = command;      // Place command byte on data bus (Port D)
+    PORTB &= ~(1 << PB0); // Clear RS to select instruction register mode
+    PORTB |= (1 << PB1);  // Set RW high for read operation
+    PORTB |= (1 << PB2);  // Set E high to execute command
     _delay_ms(10);
-    PORTB |= (1 << PB2);
+    PORTB &= ~(1 << PB2); // Set E low to complete the write cycle
 }
 
 void lcd_string(unsigned char *str, unsigned char length)
 {
     char i = 0;
-    // Send each character in the buffer one by one.
-    for (i = 0; i < length; i++)
+    for (i = 0; i < length; i++) // Send each character one by one
     {
         lcd_data(str[i]);
     }
-};
+}
 
 void lcd_initiaise()
 {
-    // 8-bit, 2-line display, 5x8 font.
-    lcd_cmd(0x38);
-    // Increment cursor after each character.
-    lcd_cmd(0x06);
-    // Display on, cursor off.
-    lcd_cmd(0x0c);
-    // Clear the display.
-    lcd_cmd(0x01);
-};
+    lcd_cmd(0x38); // 8-bit, 2-line display, 5x8 font
+    lcd_cmd(0x06); // Increment cursor after each character
+    lcd_cmd(0x0c); // Display on, cursor off
+    lcd_cmd(0x01); // Clear the display
+}
 int main(void)
 {
-
-    DDRD = 0xFF;                                     // LCD data bus on Port D.
-    DDRB |= (1 << DDB0) | (1 << DDB1) | (1 << DDB2); // Control pins on PB0-PB2.
+    DDRD = 0xFF;                                     // LCD data bus on Port D
+    DDRB |= (1 << DDB0) | (1 << DDB1) | (1 << DDB2); // Control pins on PB0-PB2
 
     while (1)
     {
+        lcd_cmd(0x80);             // Move cursor to first line start
+        lcd_string("Irfan", 5);    // Display "Irfan" on first line
+        lcd_cmd(0xC0);             // Move cursor to second line start
+        lcd_string("Fathan M", 8); // Display "Fathan M" on second line
+        _delay_ms(2000);           // Wait 2 seconds before refresh
     }
 
     return 0;
