@@ -60,7 +60,7 @@ int main(void)
         lcd_string("Irfan", 5);    // Display "Irfan" on first line
         lcd_cmd(0xC0);             // Move cursor to second line start
         lcd_string("Fathan M", 8); // Display "Fathan M" on second line
-        _delay_ms(2000);           // Wait 2 seconds before refresh
+       
     }
 
     return 0;
