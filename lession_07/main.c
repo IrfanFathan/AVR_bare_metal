@@ -13,20 +13,7 @@
 #include <avr/io.h>
 #include <util/delay.h>
 #include <avr/interrupt.h>
-int main(void)
-{
 
-    DDRB |= (1 << DDB0);                // Set PB0 as output
-    sei();                              // Enable global interrupts
-    EIMSK |= (1 << INT0) | (1 << INT1); // Enable external interrupts INT0 and INT1
-    // Configure INT0 and INT1 for rising-edge triggering.
-    MCUCR |= (1 << ISC11) | (1 << ISC10) | (1 << ISC01) | (1 << ISC00);
-    while (1)
-    {
-    }
-
-    return 0;
-}
 ISR(INT0_vect)
 {
     // INT0 turns the output on.
@@ -38,3 +25,31 @@ ISR(INT1_vect)
     // INT1 turns the output off.
     PORTB &= ~(1 << PB0);
 }
+
+int main(void)
+{
+    // PB0 output
+    DDRB |= (1 << DDB0);
+
+    // PD2 and PD3 input
+    DDRD &= ~((1 << DDD2) | (1 << DDD3));
+
+    // Enable internal pull-up resistors
+    PORTD |= (1 << PD2) | (1 << PD3);
+
+    // Falling edge trigger
+    EICRA |= (1 << ISC01) | (1 << ISC11) |(1 << ISC00) | (1 << ISC10);
+
+    // Enable INT0 and INT1
+    EIMSK |= (1 << INT0) | (1 << INT1);
+
+    // Enable global interrupts
+    sei();
+
+    while (1)
+    {
+    }
+
+    return 0;
+}
+
