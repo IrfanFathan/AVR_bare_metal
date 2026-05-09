@@ -15,9 +15,13 @@
 #include <util/delay.h>
 
 int main(void) {
-   
-    while (1) {
+    sei();// Enable global interrupts
+       TIMSK1 |=(1<<TOIE1); // Enable Timer1 overflow interrupt
        
+
+    while (1) {
+      
+
     }
 
     return 0;
