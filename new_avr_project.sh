@@ -62,18 +62,26 @@ mkdir -p "$PROJECT_NAME"
 
 # ── main.c ─────────────────────────────────
 cat > "$PROJECT_NAME/main.c" << 'EOF'
+/*************************************************
+ * Program   : [Project Name]
+ * Author    : [Author Name]
+ * Date      : [Date]
+ * MCU       : ATmega328P (16 MHz)
+ *
+ * Description:
+ * This is a template for an AVR microcontroller project using the ATmega328P.
+ *************************************************/
+
+
+#define F_CPU 16000000UL // Define CPU frequency for delay functions
+
 #include <avr/io.h>
 #include <util/delay.h>
 
 int main(void) {
-    // Configure PB5 (Arduino pin 13) as output
-    DDRB |= (1 << PB5);
-
+   
     while (1) {
-        PORTB |= (1 << PB5);   // LED ON
-        _delay_ms(500);
-        PORTB &= ~(1 << PB5);  // LED OFF
-        _delay_ms(500);
+       
     }
 
     return 0;
