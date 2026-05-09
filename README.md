@@ -28,16 +28,16 @@ Build practical bare-metal AVR programming skills on ATmega328P (16 MHz) through
 
 ## 📚 Lessons Table
 
-| No  | Lession No | Short Description                                               |
-| --- | ---------- | --------------------------------------------------------------- |
-| 1   | lession_01 | LED blink on PB0 with 1-second delay using direct port control. |
-| 2   | lession_02 | 7-segment counter (0-9) on PORTD with timed updates.            |
-| 3   | lession_03 | Button-based LED control (PD0 input, PB0 output).               |
-| 4   | lession_04 | LCD control in 8-bit mode with command/data helper functions.   |
-| 5   | lession_05 | LCD control in 4-bit mode initialization and text display.      |
-| 6   | lession_06 | Basic blink example on PB5 (Arduino D13 equivalent).            |
-| 7   | lession_07 | External interrupts INT0/INT1 to set/clear PB0 output.          |
-| 8   | lession_08 | Timer/interrupt experiment scaffold for next lesson expansion.  |
+| No  | Lession No                | Short Description                                               |
+| --- | ------------------------- | --------------------------------------------------------------- |
+| 1   | [lession_01](lession_01/) | LED blink on PB0 with 1-second delay using direct port control. |
+| 2   | [lession_02](lession_02/) | 7-segment counter (0-9) on PORTD with timed updates.            |
+| 3   | [lession_03](lession_03/) | Button-based LED control (PD0 input, PB0 output).               |
+| 4   | [lession_04](lession_04/) | LCD control in 8-bit mode with command/data helper functions.   |
+| 5   | [lession_05](lession_05/) | LCD control in 4-bit mode initialization and text display.      |
+| 6   | [lession_06](lession_06/) | Basic blink example on PB5 (Arduino D13 equivalent).            |
+| 7   | [lession_07](lession_07/) | External interrupts INT0/INT1 to set/clear PB0 output.          |
+| 8   | [lession_08](lession_08/) | Timer/interrupt experiment scaffold for next lesson expansion.  |
 
 ## 🧪 Project Table
 
