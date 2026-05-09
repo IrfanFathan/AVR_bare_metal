@@ -40,6 +40,8 @@ int main(void)
     // Falling edge trigger
     EICRA |= (1 << ISC01) | (1 << ISC11) |(1 << ISC00) | (1 << ISC10);
 
+    // EICRA &= ~((1 << ISC00) | (1 << ISC10));
+
     // Enable INT0 and INT1
     EIMSK |= (1 << INT0) | (1 << INT1);
 
@@ -52,4 +54,3 @@ int main(void)
 
     return 0;
 }
-
