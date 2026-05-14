@@ -58,6 +58,25 @@ Build practical bare-metal AVR programming skills on ATmega328P (16 MHz) through
 - project_01: Integrated mini project
 - new_avr_project.sh: Script to bootstrap a new AVR lesson/project template
 
+## 🧩 How To Use Simulation Files
+
+1. Build the target lesson or project first to generate the HEX file:
+   - `make -C lession_03`
+   - `make -C lession_04`
+   - `make -C lession_07`
+   - `make -C project_01`
+2. Open your simulator tool (for example Proteus) and load the corresponding `.sim1` file.
+3. In the MCU properties (ATmega328P), set the program file to the generated `.hex` file from the same folder.
+4. Ensure clock frequency is set to 16 MHz to match project configuration.
+5. Run the simulation and observe outputs (LED, LCD, interrupts, or port patterns depending on the lesson).
+
+### 📌 Available Simulation Files
+
+- [lession_03/simulation_file_lession_three.sim1](lession_03/simulation_file_lession_three.sim1)
+- [lession_04/simulation_file_lession_four.sim1](lession_04/simulation_file_lession_four.sim1)
+- [lession_07/simulation_file_lession_seven.sim1](lession_07/simulation_file_lession_seven.sim1)
+- [project_01/simulation_file_lession_three.sim1](project_01/simulation_file_lession_three.sim1)
+
 ## ✅ Notes
 
 - Folder name uses lession spelling to match current project structure.
