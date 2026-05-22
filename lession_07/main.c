@@ -30,24 +30,17 @@ int main(void)
 {
     // PB0 output
     DDRB |= (1 << DDB0);
-
     // PD2 and PD3 input
     DDRD &= ~((1 << DDD2) | (1 << DDD3));
-
     // Enable internal pull-up resistors
     PORTD |= (1 << PD2) | (1 << PD3);
-
     // Falling edge trigger
-    EICRA |= (1 << ISC01) | (1 << ISC11) |(1 << ISC00) | (1 << ISC10);
-
+    EICRA |= (1 << ISC01) | (1 << ISC11) | (1 << ISC00) | (1 << ISC10);
     // EICRA &= ~((1 << ISC00) | (1 << ISC10));
-
     // Enable INT0 and INT1
     EIMSK |= (1 << INT0) | (1 << INT1);
-
     // Enable global interrupts
     sei();
-
     while (1)
     {
     }
