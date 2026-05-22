@@ -121,10 +121,10 @@ echo ""
 #  Step 1 — Type
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 section "What are you creating?"
-menu "type" "Project" "Lesson"
+menu "type" "Project" "Lession"
 TYPE="$MENU_RESULT"
 
-if [[ "$TYPE" == "Lesson" ]]; then
+if [[ "$TYPE" == "Lession" ]]; then
     PREFIX="lession"
 else
     PREFIX="project"
