@@ -90,7 +90,7 @@ void lcd_data(unsigned char data)
     PORTB |= (1 << PB3);   // Set E high initially
     _delay_ms(10);
     PORTB &= ~(1 << PB3);       // Set E low to complete the write cycle
-    PORTC = (data << 4) & 0xF0; // Place lower 4 bits of data on Port C
+    PORTC = (data  & 0xF0); // Place lower 4 bits of data on Port C
     PORTB |= (1 << PB1);        // Clear RS to select instruction register mode
     PORTB &= ~(1 << PB2);       // Set RW low for write operation
     PORTB |= (1 << PB3);        // Set E high initially
@@ -106,7 +106,7 @@ void lcd_cmd(unsigned char command)
     PORTB |= (1 << PB3);      // Set E high initially
     _delay_ms(10);
     PORTB &= ~(1 << PB3);          // Set E low to complete the write cycle
-    PORTC = (command << 4) & 0xF0; // Place lower 4 bits of command on Port C
+    PORTC = (command & 0xF0); // Place lower 4 bits of command on Port C
     PORTB &= ~(1 << PB1);          // Clear RS to select instruction register mode
     PORTB &= ~(1 << PB2);          // Set RW low for write operation
     PORTB |= (1 << PB3);           // Set E high initially
