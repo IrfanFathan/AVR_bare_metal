@@ -14,13 +14,16 @@
 #include <util/delay.h>
 #include <avr/interrupt.h>
 
-
-
+// globle variables
+uint8_t a, b, c, d, e, f;
+uint8_t first_digit, second_digit, third_digit, fourth_digit, fifth_digit;
+uint8_t captured;
 
 int main(void)
 {
-// ENABLE DATA DRIECTION REGISTER
-DDRC =0xFF;
+    DDRC = 0xFF;                                     // LCD data bus on Port C
+    DDRB |= (1 << DDB0) | (1 << DDB1) | (1 << DDB2); // Control pins on PB0-PB2
+
     // ENBLE GLOBEL INTERRUPT BIT
     sei();
     // ENBLE REQUIRED TIMER INTERRUPT
@@ -34,8 +37,23 @@ DDRC =0xFF;
 
     // SET CAPTURE
     TCCR1B |= (1 << ICR1);
+
+    lcd_initiaise();
+    lcd_cmd(0x80);
+    lcd_string("INPUT CAPTURED:", 14);
     while (1)
     {
+        lcd_cmd(0xC0);
+
+        a = captured / 10;
+        b = a / 10;
+        c = b / 10;
+
+        fifth_digit = captured % 10;
+        fourth_digit = a % 10;
+        third_digit = b % 10;
+        second_digit = c % 10;
+        first_digit = c / 10;
     }
 
     return 0;
