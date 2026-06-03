@@ -38,25 +38,40 @@ int main(void)
     // SET CAPTURE
     TCCR1B |= (1 << ICR1);
 
+    // Initialize LCD and display header
     lcd_initiaise();
-    lcd_cmd(0x80);
-    lcd_string("INPUT CAPTURED:", 14);
+    lcd_cmd(0x80);                     // Set cursor to first line
+    lcd_string("INPUT CAPTURED:", 14); // Display header text
+
     while (1)
     {
-        lcd_cmd(0xC0);
+        lcd_cmd(0xC0); // Set cursor to second line
 
+        // Extract individual digits from captured value
         a = captured / 10;
         b = a / 10;
         c = b / 10;
 
-        fifth_digit = captured % 10;
-        fourth_digit = a % 10;
-        third_digit = b % 10;
-        second_digit = c % 10;
-        first_digit = c / 10;
+        // Extract each digit using modulo and division
+        fifth_digit = captured % 10; // Ones place
+        fourth_digit = a % 10;       // Tens place
+        third_digit = b % 10;        // Hundreds place
+        second_digit = c % 10;       // Thousands place
+        first_digit = c / 10;        // Ten-thousands place
+
+        // Display each digit on the LCD
+          lcd_data(first_digit+0x30);
+          lcd_data(second_digit+0x30);
+          lcd_data(third_digit+0x30);
+          lcd_data(fourth_digit+0x30);
+          lcd_data(fifth_digit+0x30);  
     }
 
     return 0;
+}
+
+ISR(TIMER1_COMPB_vect){
+    captured=ICR1;
 }
 
 void lcd_data(unsigned char data)
