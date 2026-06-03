@@ -77,22 +77,34 @@ ISR(TIMER1_CAPT_vect)
 
 void lcd_data(unsigned char data)
 {
-    PORTC = data;         // Place character data on data bus (Port D)
-    PORTB |= (1 << PB1);  // Set RS high to select data register mode
-    PORTB &= ~(1 << PB2); // Set RW low for write operation
-    PORTB |= (1 << PB3);  // Set E high initially
+    PORTB = (data & 0xF0); // Place upper 4 bits of data on Port B
+    PORTB &= ~(1 << PB1);  // Clear RS to select instruction register mode
+    PORTB &= ~(1 << PB2);  // Set RW low for write operation
+    PORTB |= (1 << PB3);   // Set E high initially
     _delay_ms(10);
-    PORTB &= ~(1 << PB3); // Set E low to complete the write cycle
+    PORTB &= ~(1 << PB3);       // Set E low to complete the write cycle
+    PORTC = (data << 4) & 0xF0; // Place lower 4 bits of data on Port C
+    PORTB &= ~(1 << PB1);       // Clear RS to select instruction register mode
+    PORTB &= ~(1 << PB2);       // Set RW low for write operation
+    PORTB |= (1 << PB3);        // Set E high initially
+    _delay_ms(10);
+    PORTB &= ~(1 << PB3);
 }
 
 void lcd_cmd(unsigned char command)
 {
-    PORTC = command;      // Place command byte on data bus (Port D)
-    PORTB &= ~(1 << PB1); // Clear RS to select instruction register mode
-    PORTB &= ~(1 << PB2); // Set RW low for write operation
-    PORTB |= (1 << PB3);  // Set E high initially
+    PORTB = (command & 0xF0); // Place upper 4 bits of command on Port B
+    PORTB &= ~(1 << PB1);     // Clear RS to select instruction register mode
+    PORTB &= ~(1 << PB2);     // Set RW low for write operation
+    PORTB |= (1 << PB3);      // Set E high initially
     _delay_ms(10);
-    PORTB &= ~(1 << PB3); // Set E low to complete the write cycle
+    PORTB &= ~(1 << PB3);          // Set E low to complete the write cycle
+    PORTC = (command << 4) & 0xF0; // Place lower 4 bits of command on Port C
+    PORTB &= ~(1 << PB1);          // Clear RS to select instruction register mode
+    PORTB &= ~(1 << PB2);          // Set RW low for write operation
+    PORTB |= (1 << PB3);           // Set E high initially
+    _delay_ms(10);
+    PORTB &= ~(1 << PB3);
 }
 
 void lcd_string(const unsigned char *str, unsigned char length)
@@ -105,8 +117,11 @@ void lcd_string(const unsigned char *str, unsigned char length)
 
 void lcd_initiaise()
 {
-    lcd_cmd(0x38); // 8-bit, 2-line display, 5x8 font
+    _delay_ms(50); // Wait for LCD to power up
+    lcd_cmd(0x33); // Initialize LCD in 4-bit mode
+    lcd_cmd(0x32); // Set to 4-bit mode
+    lcd_cmd(0x28); // 2-line display, 5x8 font
     lcd_cmd(0x06); // Increment cursor after each character
-    lcd_cmd(0x0c); // Display on, cursor off
+    lcd_cmd(0x0C); // Display on, cursor off
     lcd_cmd(0x01); // Clear the display
 }
