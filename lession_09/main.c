@@ -22,7 +22,7 @@ uint8_t captured;
 int main(void)
 {
     DDRC = 0xFF;                                     // LCD data bus on Port C
-    DDRB |= (1 << DDB0) | (1 << DDB1) | (1 << DDB2); // Control pins on PB0-PB2
+    DDRB |= (1 << DDB1) | (1 << DDB2) | (1 << DDB3); // Control pins on PB1-PB3
 
     // ENBLE GLOBEL INTERRUPT BIT
     sei();
@@ -36,7 +36,7 @@ int main(void)
     TCCR1B &= ~(1 << CS11);
 
     // SET CAPTURE
-    TCCR1B |= (1 << ICR1);
+    TCCR1B |= (1 << ICES1); // Capture on rising edge
 
     // Initialize LCD and display header
     lcd_initiaise();
@@ -60,38 +60,39 @@ int main(void)
         first_digit = c / 10;        // Ten-thousands place
 
         // Display each digit on the LCD
-          lcd_data(first_digit+0x30);
-          lcd_data(second_digit+0x30);
-          lcd_data(third_digit+0x30);
-          lcd_data(fourth_digit+0x30);
-          lcd_data(fifth_digit+0x30);  
+        lcd_data(first_digit + 0x30);
+        lcd_data(second_digit + 0x30);
+        lcd_data(third_digit + 0x30);
+        lcd_data(fourth_digit + 0x30);
+        lcd_data(fifth_digit + 0x30);
     }
 
     return 0;
 }
 
-ISR(TIMER1_COMPB_vect){
-    captured=ICR1;
+ISR(TIMER1_COMPB_vect)
+{
+    captured = ICR1;
 }
 
 void lcd_data(unsigned char data)
 {
     PORTC = data;         // Place character data on data bus (Port D)
-    PORTB |= (1 << PB0);  // Set RS high to select data register mode
-    PORTB &= ~(1 << PB1); // Set RW low for write operation
-    PORTB |= (1 << PB2);  // Set E high initially
+    PORTB |= (1 << PB1);  // Set RS high to select data register mode
+    PORTB &= ~(1 << PB2); // Set RW low for write operation
+    PORTB |= (1 << PB3);  // Set E high initially
     _delay_ms(10);
-    PORTB &= ~(1 << PB2); // Set E low to complete the write cycle
+    PORTB &= ~(1 << PB3); // Set E low to complete the write cycle
 }
 
 void lcd_cmd(unsigned char command)
 {
     PORTC = command;      // Place command byte on data bus (Port D)
-    PORTB &= ~(1 << PB0); // Clear RS to select instruction register mode
-    PORTB &= ~(1 << PB1); // Set RW low for write operation
-    PORTB |= (1 << PB2);  // Set E high initially
+    PORTB &= ~(1 << PB1); // Clear RS to select instruction register mode
+    PORTB &= ~(1 << PB2); // Set RW low for write operation
+    PORTB |= (1 << PB3);  // Set E high initially
     _delay_ms(10);
-    PORTB &= ~(1 << PB2); // Set E low to complete the write cycle
+    PORTB &= ~(1 << PB3); // Set E low to complete the write cycle
 }
 
 void lcd_string(const unsigned char *str, unsigned char length)
