@@ -17,12 +17,12 @@
 // globle variables
 uint16_t a, b, c, d, e, f;
 uint16_t first_digit, second_digit, third_digit, fourth_digit, fifth_digit;
-uint16_t captured;
+volatile uint16_t captured=0;
 
 int main(void)
 {
     DDRC = 0xFF;                                     // LCD data bus on Port C
-    DDRB |= (1 << DDB1) | (1 << DDB2) | (1 << DDB3); // Control pins on PB1-PB3
+    DDRB |= (1 << DDB0) |(1 << DDB1) | (1 << DDB2) | (1 << DDB3); // Control pins on PB1-PB3
 
     // ENBLE GLOBEL INTERRUPT BIT
     sei();
