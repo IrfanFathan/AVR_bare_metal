@@ -15,9 +15,9 @@
 #include <avr/interrupt.h>
 
 // globle variables
-uint8_t a, b, c, d, e, f;
-uint8_t first_digit, second_digit, third_digit, fourth_digit, fifth_digit;
-uint8_t captured;
+uint16_t a, b, c, d, e, f;
+uint16_t first_digit, second_digit, third_digit, fourth_digit, fifth_digit;
+uint16_t captured;
 
 int main(void)
 {
@@ -70,7 +70,7 @@ int main(void)
     return 0;
 }
 
-ISR(TIMER1_COMPB_vect)
+ISR(TIMER1_CAPT_vect)
 {
     captured = ICR1;
 }
