@@ -18,18 +18,18 @@
 void lcd_data(unsigned char data);
 void lcd_cmd(unsigned char command);
 void lcd_string(const unsigned char *str, unsigned char length);
-void lcd_initiaise(void);
+void lcd_initialize(void);
 
 // globle variables
 uint16_t a, b, c, d, e, f;
 uint16_t first_digit, second_digit, third_digit, fourth_digit, fifth_digit;
-volatile uint16_t captured=0;
+volatile uint16_t captured = 0;
 
 int main(void)
 {
     DDRC = 0xFF;                                     // LCD data bus on Port C
     DDRB |= (1 << DDB1) | (1 << DDB2) | (1 << DDB3); // Control pins on PB1-PB3
-    DDRB &= ~(1 << DDB0); // Set PB0 as input for capture signal
+    DDRB &= ~(1 << DDB0);                            // Set PB0 as input for capture signal
 
     // ENBLE GLOBEL INTERRUPT BIT
     sei();
@@ -46,7 +46,7 @@ int main(void)
     TCCR1B |= (1 << ICES1); // Capture on rising edge
 
     // Initialize LCD and display header
-    lcd_initiaise();
+    lcd_initialize();
     lcd_cmd(0x80);                     // Set cursor to first line
     lcd_string("INPUT CAPTURED:", 14); // Display header text
 
@@ -85,13 +85,13 @@ ISR(TIMER1_CAPT_vect)
 void lcd_data(unsigned char data)
 {
     PORTB = (data & 0xF0); // Place upper 4 bits of data on Port B
-    PORTB |= (1 << PB1);  // Clear RS to select instruction register mode
+    PORTB |= (1 << PB1);   // Clear RS to select instruction register mode
     PORTB &= ~(1 << PB2);  // Set RW low for write operation
     PORTB |= (1 << PB3);   // Set E high initially
     _delay_ms(10);
     PORTB &= ~(1 << PB3);       // Set E low to complete the write cycle
     PORTC = (data << 4) & 0xF0; // Place lower 4 bits of data on Port C
-    PORTB |= (1 << PB1);       // Clear RS to select instruction register mode
+    PORTB |= (1 << PB1);        // Clear RS to select instruction register mode
     PORTB &= ~(1 << PB2);       // Set RW low for write operation
     PORTB |= (1 << PB3);        // Set E high initially
     _delay_ms(10);
@@ -122,7 +122,7 @@ void lcd_string(const unsigned char *str, unsigned char length)
     }
 }
 
-void lcd_initiaise()
+void lcd_initialize()
 {
     _delay_ms(50); // Wait for LCD to power up
     lcd_cmd(0x33); // Initialize LCD in 4-bit mode
