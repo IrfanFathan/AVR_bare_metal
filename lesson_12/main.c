@@ -1,11 +1,13 @@
 /*************************************************
- * Program   : df
- * Author    : —
+ * Program   : UART Communication Program
+ * Author    : Irfan Fathan
  * Date      : 2026-06-05
  * MCU       : ATmega328P @ 16000000 Hz
  *
  * Description:
- *   [Add description here]
+ *   UART (Universal Asynchronous Receiver/Transmitter) communication program for ATmega328P.
+ *   This program initializes the UART communication and sends a simple message "Hello, UART!"
+ *   to the connected device every 2 seconds.
  *************************************************/
 
 #define F_CPU 16000000UL  /* CPU frequency for delay functions */
@@ -15,11 +17,11 @@
 
 int main(void) {
 
-    /* Initialization */
+    
 
     while (1) {
 
-        /* Main loop */
+        
 
     }
 
