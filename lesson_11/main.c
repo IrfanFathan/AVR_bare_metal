@@ -27,10 +27,10 @@ int main(void)
     // SET PRESCALER
     // 16 MHZ / 205KHZ = 16
     TCCR1B |= (1 << CS10) | (1 << CS11);
-    TCCR1B &= (1 << CS12);
+    // TCCR1B &= (1 << CS12); => no needed to write this line because the bit is already 0
 
-    // SETING THE OUTPUT COMPARING PIN AS DDD5
-    DDRD |= (1 << DDD5);
+    // SETING THE OUTPUT COMPARING PIN AS DDb5 (OC1A)
+    DDRB |= (1 << DDB1);
 
     // // SET DUTY CYCLE TO 50%
     // OCR1A = 512; // 50% of 1023 (10-bit resolution)
@@ -44,7 +44,7 @@ int main(void)
             _delay_ms(2);
         }
         _delay_ms(2000);
-        for (uint16_t i = 1024; i < 0; i--)
+        for (int16_t i = 1024; i > 0; i--)
         {
             OCR1A = i;
             _delay_ms(2);
