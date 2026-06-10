@@ -15,11 +15,6 @@
 
 int main(void)
 {
-
-    /* Initialization */
-    // ENABLE GLOBEL INTERUPT
-    sei();
-
     // ENABLE TIMER MODE AS PWM 10 bit MODE
     TCCR1A |= (1 << WGM10) | (1 << WGM11);
     TCCR1B |= (1 << WGM12);
@@ -37,13 +32,24 @@ int main(void)
     // SETING THE OUTPUT COMPARING PIN AS DDD5
     DDRD |= (1 << DDD5);
 
-    // SET DUTY CYCLE TO 50%
-    OCR1A = 512; // 50% of 1023 (10-bit resolution)
-    
+    // // SET DUTY CYCLE TO 50%
+    // OCR1A = 512; // 50% of 1023 (10-bit resolution)
+
     while (1)
     {
 
-        /* Main loop */
+        for (uint16_t i = 0; i < 1024; i++)
+        {
+            OCR1A = i;
+            _delay_ms(2);
+        }
+        _delay_ms(2000);
+        for (uint16_t i = 1024; i < 0; i--)
+        {
+            OCR1A = i;
+            _delay_ms(2);
+        }
+        _delay_ms(2000);
     }
 
     return 0;
