@@ -6,6 +6,8 @@
  *
  * Description:
  *   ADC conversion
+ * Status     :
+ *   Code Error {UNDER REVIEW}
  *************************************************/
 
 #define F_CPU 16000000UL /* CPU frequency for delay functions */
@@ -36,23 +38,72 @@ int main(void)
     // // SET DUTY CYCLE TO 50%
     // OCR1A = 512; // 50% of 1023 (10-bit resolution)
 
-    // ENABLE GLOBLE INTERRUPT
-    sei();
-    // ENABLE ADC INTERRUPT AND RELETIVES
-    ADCSRA |= (1 << ADIE); //
-    // SET REFERNCE VOLATEGE AT Avcc AND INPUT TO ADC
-    // ADMUX |=(1<<REFS0);
-    // ADMUX &=(~(1<<ADLAR));
-    ADMUX = 0X40;
-    // ENABLE ADC
-    ADCSRA |= (1 << ADEN) | (1 << ADATE);
-    ADCSRA |= (1 << ADSC);
-    ADCSRB = 0X00; // ADC SET THE AUTO TRIGGER SOURCE IN FREE RUNNING MODE
-    // SETING THE PRESCALER
-    ADCSRA |= (1 << ADPS2);
-    ADCSRA &= (~(1 << ADPS1)) | (ADPS0);
-    // START THE CONVERSION
-    ADCSRA |= (1 << ADSC);
+    // // ENABLE GLOBLE INTERRUPT
+    // sei();
+    // // ENABLE ADC INTERRUPT AND RELETIVES
+    // ADCSRA |= (1 << ADIE); //
+    // // SET REFERNCE VOLATEGE AT Avcc AND INPUT TO ADC
+    // // ADMUX |=(1<<REFS0);
+    // // ADMUX &=(~(1<<ADLAR));
+    // ADMUX = 0X40;
+    // // ENABLE ADC
+    // ADCSRA |= (1 << ADEN) | (1 << ADATE);
+    // ADCSRB = 0X00; // ADC SET THE AUTO TRIGGER SOURCE IN FREE RUNNING MODE
+    // // SETING THE PRESCALER
+    // ADCSRA |= (1 << ADPS2);
+    // ADCSRA &= (~(1 << ADPS1) | (1<<ADPS0));
+    // // START THE CONVERSION
+    // ADCSRA |= (1 << ADSC);
+
+
+
+
+
+
+
+
+
+
+
+
+sei();
+
+// Enable ADC interrupt
+ADCSRA |= (1 << ADIE);
+
+// AVCC reference, ADC0
+ADMUX = 0x40;
+
+// Free running mode
+ADCSRB = 0x00;
+
+// Enable ADC and auto trigger
+ADCSRA |= (1 << ADEN) | (1 << ADATE);
+
+// Prescaler = 16
+ADCSRA |= (1 << ADPS2);
+ADCSRA &= ~((1 << ADPS1) | (1 << ADPS0));
+
+// Start conversion
+ADCSRA |= (1 << ADSC);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     while (1)
     {
@@ -62,5 +113,5 @@ int main(void)
 }
 ISR(ADC_vect)
 {
-    OCR1A = ADC;
+    OCR1A = ADCW;
 }
