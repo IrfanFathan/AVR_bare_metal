@@ -39,14 +39,18 @@ int main(void)
     // ENABLE GLOBLE INTERRUPT
     sei();
     // ENABLE ADC INTERRUPT AND RELETIVES
-    ADCSRA |= (1 << ADIF);
+    ADCSRA |= (1 << ADIE); //
     // SET REFERNCE VOLATEGE AT Avcc AND INPUT TO ADC
-    ADMUX = 0x00;
+    // ADMUX |=(1<<REFS0);
+    // ADMUX &=(~(1<<ADLAR));
+    ADMUX = 0X40;
     // ENABLE ADC
-    ADCSRA |= (1 << ADEN) | (1 << ADATE) | (1 << ADSC);
+    ADCSRA |= (1 << ADEN) | (1 << ADATE);
+    ADCSRA |= (1 << ADSC);
+    ADCSRB = 0X00; // ADC SET THE AUTO TRIGGER SOURCE IN FREE RUNNING MODE
     // SETING THE PRESCALER
     ADCSRA |= (1 << ADPS2);
-    ADCSRA &= (~(1 << ADPS1)) & (~(ADPS0));
+    ADCSRA &= (~(1 << ADPS1)) | (ADPS0);
     // START THE CONVERSION
     ADCSRA |= (1 << ADSC);
 
