@@ -30,9 +30,11 @@ int main(void)
     UCSR0C |= (1 << UCSZ01) | (1 << UCSZ00);
 
     // SET BRAUD RATE SPEED
-    UCSR0A |= (1 << U2X0);
+    UCSR0A |= (1 << U2X0); // 8-bit data transmission
 
     // SET BRAUD RATE
+    UBRR0L = 16; // using bruad rate in 115200
+    UBRR0H = 0;
 
     while (1)
     {
@@ -41,4 +43,11 @@ int main(void)
     }
 
     return 0;
+}
+
+// UART ISR INTERRUPT
+uint8_t data;
+ISR(USART_RX_vect)
+{
+    UDR0 = data;
 }
