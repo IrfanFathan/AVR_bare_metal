@@ -8,7 +8,7 @@
 # ╚══════════════════════════════════════════════════════════════╝
 
 INSTALL_PATH="/usr/local/bin/avr_forge"
-VERSION="1.1.0"
+VERSION="1.1.0.a"
 
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 #  Colors & Styles
@@ -144,13 +144,13 @@ fi
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 clear
 echo ""
-echo -e "${BCYAN}  ╔══════════════════════════════════════════════════╗${R}"
-echo -e "${BCYAN}  ║${R}         ${BWHITE}▲  AVR  FORGE  ·  Project Generator${R}  ${BCYAN}       ║${R}"
-echo -e "${BCYAN}  ║${R}  ${GRAY}Firmware scaffold for AVR bare-metal development${R}  ${BCYAN}║${R}"
-echo -e "${BCYAN}  ║${R}  ${GRAY}v${VERSION}${R}                                           ${BCYAN}║${R}"
-echo -e "${BCYAN}  ╚══════════════════════════════════════════════════╝${R}"
+echo -e "${BCYAN}  ╔════════════════════════════════════════════════════╗${R}"
+echo -e "${BCYAN}  ║${R}         ${BWHITE}▲  AVR  FORGE  ·  Project Generator${R}  ${BCYAN}      ║${R}"
+echo -e "${BCYAN}  ║${R}  ${GRAY}Firmware scaffold for AVR bare-metal development${R}${BCYAN}  ║${R}"
+echo -e "${BCYAN}  ║${R}  ${GRAY}v${VERSION}${R}                                            ${BCYAN}║${R}"
+echo -e "${BCYAN}  ╚════════════════════════════════════════════════════╝${R}"
 
-DATE=$(date "+%Y-%m-%d")
+DATE=$(date "+%Y-%m-%d")  
 echo ""
 echo -e "${GRAY}  Date: ${DATE}${R}"
 echo ""
