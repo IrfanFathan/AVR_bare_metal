@@ -147,7 +147,7 @@ echo ""
 echo -e "${BCYAN}  ╔════════════════════════════════════════════════════╗${R}"
 echo -e "${BCYAN}  ║${R}         ${BWHITE}▲  AVR  FORGE  ·  Project Generator${R}  ${BCYAN}      ║${R}"
 echo -e "${BCYAN}  ║${R}  ${GRAY}Firmware scaffold for AVR bare-metal development${R}${BCYAN}  ║${R}"
-echo -e "${BCYAN}  ║${R}  ${GRAY}v${VERSION}${R}                                            ${BCYAN}║${R}"
+echo -e "${BCYAN}  ║${R}  ${GRAY}v${VERSION}${R}                                          ${BCYAN}║${R}"
 echo -e "${BCYAN}  ╚════════════════════════════════════════════════════╝${R}"
 
 DATE=$(date "+%Y-%m-%d")  
