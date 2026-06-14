@@ -1,0 +1,7 @@
+# Ignore AGENTS files used by local agents and customization
+AGENTS.md
+agents.md
+
+# Common OS/editors
+.DS_Store
+.vscode/
