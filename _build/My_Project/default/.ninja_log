@@ -1,0 +1,18 @@
+# ninja log v7
+3	46	1781592604236589595	CMakeFiles/My_Project_default_default_AVR_GCC_compile.dir/home/irfan/develop/AVR_bare_metal/lesson_03/main.c.o	8330d9771b835ec8
+9	49	1781592604240931721	CMakeFiles/My_Project_default_default_AVR_GCC_compile.dir/home/irfan/develop/AVR_bare_metal/lesson_14/main.c.o	53af00d6afd25a24
+2	53	1781592604233931587	CMakeFiles/My_Project_default_default_AVR_GCC_compile.dir/home/irfan/develop/AVR_bare_metal/lesson_01/main.c.o	34ad3391e8871c45
+3	53	1781592604234931607	CMakeFiles/My_Project_default_default_AVR_GCC_compile.dir/home/irfan/develop/AVR_bare_metal/lesson_02/main.c.o	68bb3169941200bc
+5	54	1781592604238321815	CMakeFiles/My_Project_default_default_AVR_GCC_compile.dir/home/irfan/develop/AVR_bare_metal/lesson_08/main.c.o	3ccaab84712b2086
+7	54	1781592604240366608	CMakeFiles/My_Project_default_default_AVR_GCC_compile.dir/home/irfan/develop/AVR_bare_metal/lesson_13/main.c.o	d816c3602b6a599c
+6	54	1781592604239019971	CMakeFiles/My_Project_default_default_AVR_GCC_compile.dir/home/irfan/develop/AVR_bare_metal/lesson_10/main.c.o	889d96ed0d0f26e4
+7	55	1781592604239857401	CMakeFiles/My_Project_default_default_AVR_GCC_compile.dir/home/irfan/develop/AVR_bare_metal/lesson_12/main.c.o	150c4d67b22515c9
+4	56	1781592604237637175	CMakeFiles/My_Project_default_default_AVR_GCC_compile.dir/home/irfan/develop/AVR_bare_metal/lesson_06/main.c.o	f69ab2761f1b21eb
+5	57	1781592604237996808	CMakeFiles/My_Project_default_default_AVR_GCC_compile.dir/home/irfan/develop/AVR_bare_metal/lesson_07/main.c.o	90c61a2ed18b3537
+4	57	1781592604237347254	CMakeFiles/My_Project_default_default_AVR_GCC_compile.dir/home/irfan/develop/AVR_bare_metal/lesson_05/main.c.o	2f5a2a0bfce63593
+6	58	1781592604239471148	CMakeFiles/My_Project_default_default_AVR_GCC_compile.dir/home/irfan/develop/AVR_bare_metal/lesson_11/main.c.o	db9408beeb97e624
+4	58	1781592604237000155	CMakeFiles/My_Project_default_default_AVR_GCC_compile.dir/home/irfan/develop/AVR_bare_metal/lesson_04/main.c.o	3b581e9562c68d47
+46	68	1781592604279366202	CMakeFiles/My_Project_default_default_AVR_GCC_compile.dir/home/irfan/develop/AVR_bare_metal/main.c.o	663c544008f8483d
+5	73	1781592604238710924	CMakeFiles/My_Project_default_default_AVR_GCC_compile.dir/home/irfan/develop/AVR_bare_metal/lesson_09/main.c.o	911bd2d94143afe3
+49	76	1781592604281089554	CMakeFiles/My_Project_default_default_AVR_GCC_compile.dir/home/irfan/develop/AVR_bare_metal/project_01/main.c.o	af49016ba4ba605e
+53	83	1781592604284932563	CMakeFiles/My_Project_default_default_AVR_GCC_compile.dir/home/irfan/develop/AVR_bare_metal/project_02/main.c.o	45f974def0f338ed
