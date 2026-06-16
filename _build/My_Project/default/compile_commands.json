@@ -85,6 +85,12 @@
 },
 {
   "directory": "/home/irfan/develop/AVR_bare_metal/_build/My_Project/default",
+  "command": "/usr/bin/avr-gcc -D__ATmega328P__ -Ddefault=default -x c -fdiagnostics-color=always -g -gdwarf-2 -mmcu=atmega328p -x c -c -funsigned-char -funsigned-bitfields -O1 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -Wall -o CMakeFiles/My_Project_default_default_AVR_GCC_compile.dir/home/irfan/develop/AVR_bare_metal/lesson_15/main.c.o -c /home/irfan/develop/AVR_bare_metal/lesson_15/main.c",
+  "file": "/home/irfan/develop/AVR_bare_metal/lesson_15/main.c",
+  "output": "CMakeFiles/My_Project_default_default_AVR_GCC_compile.dir/home/irfan/develop/AVR_bare_metal/lesson_15/main.c.o"
+},
+{
+  "directory": "/home/irfan/develop/AVR_bare_metal/_build/My_Project/default",
   "command": "/usr/bin/avr-gcc -D__ATmega328P__ -Ddefault=default -x c -fdiagnostics-color=always -g -gdwarf-2 -mmcu=atmega328p -x c -c -funsigned-char -funsigned-bitfields -O1 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -Wall -o CMakeFiles/My_Project_default_default_AVR_GCC_compile.dir/home/irfan/develop/AVR_bare_metal/main.c.o -c /home/irfan/develop/AVR_bare_metal/main.c",
   "file": "/home/irfan/develop/AVR_bare_metal/main.c",
   "output": "CMakeFiles/My_Project_default_default_AVR_GCC_compile.dir/home/irfan/develop/AVR_bare_metal/main.c.o"
