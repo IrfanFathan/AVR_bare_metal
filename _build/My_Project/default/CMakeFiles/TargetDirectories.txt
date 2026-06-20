@@ -1,0 +1,5 @@
+/home/irfan/develop/AVR_bare_metal/_build/My_Project/default/CMakeFiles/My_Project_default_default_AVR_GCC_compile.dir
+/home/irfan/develop/AVR_bare_metal/_build/My_Project/default/CMakeFiles/My_Project_default_image_apWc0xcm.dir
+/home/irfan/develop/AVR_bare_metal/_build/My_Project/default/CMakeFiles/merge_loadable_files.dir
+/home/irfan/develop/AVR_bare_metal/_build/My_Project/default/CMakeFiles/edit_cache.dir
+/home/irfan/develop/AVR_bare_metal/_build/My_Project/default/CMakeFiles/rebuild_cache.dir

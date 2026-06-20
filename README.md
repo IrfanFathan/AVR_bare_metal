@@ -28,22 +28,29 @@ Build practical bare-metal AVR programming skills on ATmega328P (16 MHz) through
 
 ## 📚 Lessons Table
 
-| No  | Lession No                | Short Description                                               |
+| No  | Lesson Folder             | Short Description                                               |
 | --- | ------------------------- | --------------------------------------------------------------- |
-| 1   | [lession_01](lession_01/) | LED blink on PB0 with 1-second delay using direct port control. |
-| 2   | [lession_02](lession_02/) | 7-segment counter (0-9) on PORTD with timed updates.            |
-| 3   | [lession_03](lession_03/) | Button-based LED control (PD0 input, PB0 output).               |
-| 4   | [lession_04](lession_04/) | LCD control in 8-bit mode with command/data helper functions.   |
-| 5   | [lession_05](lession_05/) | LCD control in 4-bit mode initialization and text display.      |
-| 6   | [lession_06](lession_06/) | Basic blink example on PB5 (Arduino D13 equivalent).            |
-| 7   | [lession_07](lession_07/) | External interrupts INT0/INT1 to set/clear PB0 output.          |
-| 8   | [lession_08](lession_08/) | Timer/interrupt experiment scaffold for next lesson expansion.  |
+| 1   | [lesson_01](lesson_01/)   | LED blink on PB0 with 1-second delay using direct port control. |
+| 2   | [lesson_02](lesson_02/)   | 7-segment counter (0-9) on PORTD with timed updates.            |
+| 3   | [lesson_03](lesson_03/)   | Button-based LED control (PD0 input, PB0 output).               |
+| 4   | [lesson_04](lesson_04/)   | LCD control in 8-bit mode with command/data helper functions.   |
+| 5   | [lesson_05](lesson_05/)   | LCD control in 4-bit mode initialization and text display.      |
+| 6   | [lesson_06](lesson_06/)   | Basic blink example on PB5 (Arduino D13 equivalent).            |
+| 7   | [lesson_07](lesson_07/)   | External interrupts (INT0/INT1) with ISR handlers.              |
+| 8   | [lesson_08](lesson_08/)   | Timer/interrupt scaffold and experiment playground.             |
+| 9   | [lesson_09](lesson_09/)   | Small experiment folder (basic I/O examples).                   |
+| 10  | [lesson_10](lesson_10/)   | Additional peripheral experiments (timing and control).         |
+| 11  | [lesson_11](lesson_11/)   | Extended examples and Proteus simulation for timing tests.      |
+| 12  | [lesson_12](lesson_12/)   | PWM + ADC experiments; advanced timer/ADC integration.          |
+| 13  | [lesson_13](lesson_13/)   | UART receive example with ISR and serial handling.              |
+| 14  | [lesson_14](lesson_14/)   | Higher-level examples and combined features (project-ready).     |
 
 ## 🧪 Project Table
 
 | No  | Project    | Short Description                                                      |
 | --- | ---------- | ---------------------------------------------------------------------- |
-| 1   | project_01 | Pseudo-random LED pattern generator using a simple LCG on PORTB/PORTD. |
+| 1   | [project_01](project_01/) | Pseudo-random LED pattern generator using a simple LCG on PORTB/PORTD. |
+| 2   | [project_02](project_02/) | Additional mini-project (integrates lessons into small demo).        |
 
 ## 🛠️ Toolchain
 
@@ -60,11 +67,15 @@ Build practical bare-metal AVR programming skills on ATmega328P (16 MHz) through
 
 ## 🧩 How To Use Simulation Files
 
-1. Build the target lesson or project first to generate the HEX file:
-   - `make -C lession_03`
-   - `make -C lession_04`
-   - `make -C lession_07`
-   - `make -C project_01`
+1. Build the target lesson or project first to generate the HEX file. Example:
+
+```bash
+make -C lesson_03
+make -C lesson_04
+make -C lesson_07
+make -C project_01
+```
+
 2. Open your simulator tool (for example Proteus) and load the corresponding `.sim1` file.
 3. In the MCU properties (ATmega328P), set the program file to the generated `.hex` file from the same folder.
 4. Ensure clock frequency is set to 16 MHz to match project configuration.
@@ -72,12 +83,20 @@ Build practical bare-metal AVR programming skills on ATmega328P (16 MHz) through
 
 ### 📌 Available Simulation Files
 
-- [lession_03/simulation_file_lession_three.sim1](lession_03/simulation_file_lession_three.sim1)
-- [lession_04/simulation_file_lession_four.sim1](lession_04/simulation_file_lession_four.sim1)
-- [lession_07/simulation_file_lession_seven.sim1](lession_07/simulation_file_lession_seven.sim1)
+- [lesson_03/simulation_file_lession_three.sim1](lesson_03/simulation_file_lession_three.sim1)
+- [lesson_04/simulation_file_lession_four.sim1](lesson_04/simulation_file_lession_four.sim1)
+- [lesson_07/simulation_file_lession_seven.sim1](lesson_07/simulation_file_lession_seven.sim1)
+- [lesson_11/simulation_file_lession_11.sim1](lesson_11/simulation_file_lession_11.sim1)
+- [lesson_12/simulation_file_lession_12.sim1](lesson_12/simulation_file_lession_12.sim1)
 - [project_01/simulation_file_lession_three.sim1](project_01/simulation_file_lession_three.sim1)
 
 ## ✅ Notes
 
-- Folder name uses lession spelling to match current project structure.
+- Folder naming in this repo is mixed; links above point to the actual folders present.
 - Each lesson is intentionally small and focused on one concept.
+
+## 🖼️ HTML Graphics Preview
+
+An interactive HTML preview showing repository badges and quick links is available at: [docs/graphics.html](docs/graphics.html)
+
+You can open `docs/graphics.html` in a browser to see a lightweight visual summary of the repo.

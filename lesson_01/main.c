@@ -15,13 +15,13 @@
 
 int main(void)
 {
-    DDRB |= (1 << PB0);   ///In Port B , 0th set as the output 
+    DDRB |= (1 << DDB5);   ///In Port B , 0th set as the output 
 
     while(1)
     {
-       PORTB |=(1<<PB0); // 
+       PORTB |=(1<<PB5); // 
        _delay_ms(1000);
-       PORTB &=(~(1<<PB0));
+       PORTB &=(~(1<<PB5));
        _delay_ms(1000);
     }
 }
