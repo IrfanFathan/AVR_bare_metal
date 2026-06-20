@@ -4,262 +4,2116 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>AVR Bare Metal — Graphics Preview</title>
-    <style>
-        :root {
-            --bg: #fbfdff;
-            --muted: #334155;
-            --card: #fff;
-            --accent: #0b63ff
-        }
+    <aside class="editor-pane" aria-label="Project explorer">
+        <div class="workspace-label">
+            <span>Explorer</span>
+            <span>AVR Bare Metal</span>
+        </div>
+        <div class="file-tree" aria-label="Repository sections">
+            <div class="file-item active"><strong>docs/graphics.html</strong><span>active</span></div>
+            <div class="file-item"><strong>lesson_01</strong><span>GPIO</span></div>
+            <div class="file-item"><strong>lesson_04</strong><span>LCD</span></div>
+            <div class="file-item"><strong>lesson_07</strong><span>INT0</span></div>
+            <div class="file-item"><strong>lesson_12</strong><span>PWM / ADC</span></div>
+            <div class="file-item"><strong>project_01</strong><span>integrated</span></div>
+        </div>
+        <div class="code-surface" style="margin-top: 16px;">
+            <pre><span class="code-muted">workspace</span>
+<span class="code-line"><span class="code-keyword">cd</span> lesson_01</span>
+<span class="code-line"><span class="code-keyword">make</span> create</span>
+<span class="code-line"><span class="code-muted"># link HEX in Proteus</span></span></pre>
+        </div>
+    </aside>
 
-        [data-theme="dark"] {
-            --bg: #071126;
-            --muted: #9fb0c8;
-            --card: #071829;
-            --accent: #5cc0ff
-        }
+    <section class="editor-canvas" aria-labelledby="pageTitle">
+        <div class="editor-window">
+            <div class="editor-toolbar">
+                <div class="editor-tabs" aria-label="Open tabs">
+                    <span class="editor-tab active">graphics.html</span>
+                    <span class="editor-tab">README.md</span>
+                    <span class="editor-tab">lesson_01/main.c</span>
+                </div>
+                <div class="editor-status">ATmega328P · 16 MHz · avr-gcc</div>
+            </div>
 
-        body {
-            font-family: system-ui, Segoe UI, Roboto, Arial, Helvetica Neue;
-            max-width: 1100px;
-            margin: 28px auto;
-            padding: 20px;
-            background: var(--bg);
-            color: var(--muted)
-        }
+            <div class="editor-body">
+                <div class="gutter" aria-hidden="true">
+                    <span>01</span>
+                    <span>02</span>
+                    <span>03</span>
+                    <span>04</span>
+                    <span>05</span>
+                    <span>06</span>
+                    <span>07</span>
+                </div>
+                <div class="editor-copy">
+                    <p class="eyebrow">16 MHz / avr-gcc / Proteus paths</p>
+                    <h1 id="pageTitle">A tactile map for bare-metal AVR learning.</h1>
+                    <p class="lead">A compact cockpit for moving through GPIO, LCD control, interrupts, timers, ADC,
+                        PWM, UART, and I2C lessons without losing the build and simulation loop.</p>
+                    <div class="hero-actions">
+                        <a class="button primary" href="#lessons">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="1.9"
+                                    stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                            Explore lessons
+                        </a>
+                        <a class="button" href="#simulations">Open simulations</a>
+                    </div>
 
-        header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 16px
-        }
+                    <div class="code-surface">
+                        <pre><span class="code-muted">/* learning path */</span>
+<span class="code-line"><span class="code-keyword">#define</span> <span class="code-accent">F_CPU</span> <span class="code-accent">16000000UL</span></span>
+<span class="code-line"><span class="code-keyword">#include</span> &lt;<span class="code-accent">avr/io.h</span>&gt;</span>
+<span class="code-line"><span class="code-keyword">#include</span> &lt;<span class="code-accent">util/delay.h</span>&gt;</span>
+<span class="code-line"><span class="code-muted">// edit, build, simulate, flash</span></span></pre>
+                    </div>
 
-        h1 {
-            margin: 0;
-            color: var(--card);
-            font-size: 1.25rem
-        }
+                    <div class="metrics" aria-label="Repository highlights">
+                        <div class="metric"><b>15</b><span>Incremental lesson folders</span></div>
+                        <div class="metric"><b>6</b><span>Proteus simulation files</span></div>
+                        <div class="metric"><b>16M</b><span>ATmega328P clock target</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-        .badges img {
-            height: 36px;
-            margin-right: 8px
-        }
+    <aside class="inspector-pane" aria-label="ATmega328P hardware inspector">
+        <div class="inspector-stack">
+            <div class="panel-title">
+                <span>Inspector</span>
+                <span>ATmega328P map</span>
+            </div>
+            <div class="inspector-card">
+                <div class="pin-grid">
+                    <div class="pin"><span>PORTB</span><b>LED / PWM</b></div>
+                    <div class="pin"><span>PORTD</span><b>7-seg / RX</b></div>
+                    <div class="pin"><span>ADC0</span><b>analog in</b></div>
+                    <div class="pin"><span>INT0</span><b>interrupt</b></div>
+                    <div class="pin"><span>TIMER1</span><b>PWM</b></div>
+                    <div class="pin"><span>USART0</span><b>serial</b></div>
+                </div>
+                <div class="circuit-art" role="img"
+                    aria-label="Abstract microcontroller traces with highlighted signal nodes"
+                    style="margin-top: 16px;"></div>
+            </div>
+        </div>
+        <div class="inspector-grid" aria-label="Repository highlights">
+            <div class="inspector-metric"><b>single-file C</b><span>One lesson, one source file, direct register
+                    control.</span></div>
+            <div class="inspector-metric"><b>Makefile build</b><span>Compile to HEX, then load the image into Proteus or
+                    hardware.</span></div>
+            <div class="inspector-metric"><b>Skip link</b><span>Keyboard-friendly jump into the content and
+                    controls.</span></div>
+            <div class="inspector-metric"><b>Dark editor</b><span>Pane-based layout with a tighter, more deliberate
+                    workspace feel.</span></div>
+        </div>
+    </aside>
+    --line-strong: #3b4c60;
+    --accent: #7dd3fc;
+    --accent-2: #fbbf24;
+    --accent-3: #fb7185;
+    --accent-4: #a78bfa;
+    --dark: #070b10;
+    --dark-2: #0f1620;
+    --code-bg: #0b1220;
+    --code-ink: #d5e6ff;
+    --focus: rgba(125, 211, 252, 0.30);
+    --shadow: 0 28px 80px rgba(3, 8, 16, 0.40);
+    --shadow-soft: 0 14px 34px rgba(3, 8, 16, 0.24);
+    }
 
-        .layout {
-            display: grid;
-            grid-template-columns: 1fr 360px;
-            gap: 20px;
-            margin-top: 18px
-        }
+    * {
+    box-sizing: border-box;
+    }
 
-        .panel {
-            background: var(--card);
-            border: 1px solid rgba(14, 39, 60, 0.06);
-            padding: 14px;
-            border-radius: 10px;
-            color: inherit
-        }
+    html {
+    scroll-behavior: smooth;
+    }
 
-        .lessons li,
-        .sims li {
-            margin: 8px 0
-        }
+    body {
+    margin: 0;
+    min-height: 100vh;
+    background:
+    radial-gradient(circle at 14% 0%, rgba(125, 211, 252, 0.16), transparent 30rem),
+    radial-gradient(circle at 92% 6%, rgba(251, 191, 36, 0.12), transparent 24rem),
+    linear-gradient(90deg, rgba(125, 211, 252, 0.05) 1px, transparent 1px),
+    linear-gradient(0deg, rgba(125, 211, 252, 0.04) 1px, transparent 1px),
+    linear-gradient(135deg, var(--bg), var(--bg-2));
+    background-attachment: fixed;
+    background-size: auto, auto, 42px 42px, 42px 42px, auto;
+    color: var(--ink);
+    font-family: var(--sans);
+    }
 
-        a {
-            color: var(--accent);
-            text-decoration: none
-        }
+    body.nav-open {
+    overflow: hidden;
+    }
 
-        pre {
-            background: #07122a;
-            color: #dbeafe;
-            padding: 10px;
-            border-radius: 6px;
-            overflow: auto
-        }
+    a {
+    color: inherit;
+    text-decoration: none;
+    }
 
-        svg.mc {
-            width: 100%;
-            height: auto
-        }
+    button,
+    input,
+    textarea {
+    font: inherit;
+    }
 
-        .muted {
-            color: var(--muted);
-            font-size: 0.9rem
-        }
+    button {
+    color: inherit;
+    }
 
-        .controls {
-            display: flex;
-            gap: 8px;
-            align-items: center
-        }
+    :focus-visible {
+    outline: 3px solid var(--focus);
+    outline-offset: 3px;
+    }
 
-        .search {
-            padding: 8px;
-            border-radius: 8px;
-            border: 1px solid rgba(0, 0, 0, 0.06);
-            min-width: 160px
-        }
+    .skip-link {
+    position: fixed;
+    top: 12px;
+    left: 12px;
+    z-index: 1000;
+    padding: 10px 14px;
+    border-radius: var(--radius);
+    background: var(--dark);
+    color: var(--surface);
+    transform: translateY(-140%);
+    transition: transform 160ms ease;
+    }
 
-        .small {
-            font-size: 0.9rem
-        }
+    .skip-link:focus {
+    transform: translateY(0);
+    }
 
-        details summary {
-            cursor: pointer
-        }
+    .shell {
+    width: min(1240px, calc(100% - 32px));
+    margin: 0 auto;
+    }
+
+    .topbar {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    border-bottom: 1px solid var(--line);
+    background: color-mix(in srgb, var(--dark) 78%, transparent);
+    backdrop-filter: blur(18px);
+    }
+
+    .topbar-inner {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 18px;
+    align-items: center;
+    min-height: 76px;
+    }
+
+    .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    min-width: 0;
+    }
+
+    .brand-mark {
+    display: grid;
+    width: 44px;
+    height: 44px;
+    place-items: center;
+    border: 1px solid color-mix(in srgb, var(--accent) 40%, var(--line-strong));
+    border-radius: var(--radius);
+    background:
+    linear-gradient(135deg, color-mix(in srgb, var(--accent) 22%, transparent), transparent),
+    var(--surface-2);
+    box-shadow: var(--shadow-soft);
+    }
+
+    .brand-text strong {
+    display: block;
+    font-size: 0.98rem;
+    letter-spacing: 0.01em;
+    }
+
+    .brand-text span {
+    display: block;
+    color: var(--muted);
+    font-size: 0.8rem;
+    line-height: 1.25;
+    }
+
+    .primary-nav {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    }
+
+    .primary-nav a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 38px;
+    padding: 0 12px;
+    border-radius: var(--radius);
+    color: var(--muted);
+    font-weight: 750;
+    transition: background 160ms ease, color 160ms ease;
+    }
+
+    .primary-nav a:hover,
+    .primary-nav a[aria-current="true"] {
+    background: color-mix(in srgb, var(--surface) 86%, transparent);
+    color: var(--ink);
+    }
+
+    .actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 9px;
+    }
+
+    .icon-button,
+    .button {
+    min-height: 42px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: color-mix(in srgb, var(--surface) 94%, transparent);
+    color: var(--ink);
+    cursor: pointer;
+    transition: transform 170ms ease, border-color 170ms ease, background 170ms ease, box-shadow 170ms ease;
+    }
+
+    .icon-button {
+    display: grid;
+    width: 44px;
+    place-items: center;
+    }
+
+    .button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 0 14px;
+    font-weight: 800;
+    }
+
+    .button.primary {
+    border-color: var(--accent);
+    background: linear-gradient(135deg, var(--accent), color-mix(in srgb, var(--accent-4) 55%, var(--accent)));
+    color: #07111a;
+    }
+
+    .button:hover,
+    .icon-button:hover {
+    border-color: var(--accent);
+    box-shadow: 0 10px 24px rgba(10, 143, 121, 0.12);
+    transform: translateY(-1px);
+    }
+
+    .menu-button {
+    display: none;
+    }
+
+    .breadcrumb {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+    padding: 18px 0 0;
+    grid-template-columns: minmax(250px, 270px) minmax(0, 1fr) minmax(300px, 340px);
+    gap: 16px;
+    font-size: 0.75rem;
+    }
+
+    .breadcrumb a {
+    .editor-pane,
+    .editor-canvas,
+    .inspector-pane {
+    }
+
+    padding: 18px;
+    padding-bottom: 42px;
+    }
+    border-radius: calc(var(--radius) + 2px);
+    background: linear-gradient(180deg, color-mix(in srgb, var(--surface) 96%, transparent), color-mix(in srgb,
+    var(--surface-2) 96%, transparent));
+    gap: 28px;
+    align-items: stretch;
+    padding: 26px 0 20px;
+    .editor-pane:before,
+    .editor-canvas:before,
+    .inspector-pane:before {
+
+    }
+
+    .hero-copy:before {
+    background-image: linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px), linear-gradient(0deg,
+    rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 22px 22px;
+    opacity: 0.42;
+    width: 210px;
+    height: 520px;
+    .workspace-label,
+    .panel-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 0 0 16px;
+    color: var(--muted);
+    font-family: var(--mono);
+    font-size: 0.74rem;
+    font-weight: 850;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    }
+
+    .workspace-label span:last-child,
+    .panel-title span:last-child {
+    color: var(--accent);
+    }
+
+    .file-tree {
+    display: grid;
+    gap: 8px;
+    }
+
+    .file-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    min-height: 44px;
+    padding: 0 12px;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    background: color-mix(in srgb, var(--surface-2) 88%, transparent);
+    color: var(--muted);
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    }
+
+    .file-item strong {
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 0.92rem;
+    }
+
+    .file-item.active {
+    border-color: color-mix(in srgb, var(--accent) 60%, var(--line));
+    background: color-mix(in srgb, var(--accent) 10%, var(--surface-2));
+    color: var(--ink);
+    }
+
+    .editor-window {
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    min-height: 100%;
+    }
+
+    .editor-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 12px 14px;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    background: color-mix(in srgb, var(--surface-2) 94%, transparent);
+    }
+
+    .editor-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    }
+
+    .editor-tab {
+    display: inline-flex;
+    align-items: center;
+    min-height: 32px;
+    padding: 0 10px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    background: var(--surface);
+    color: var(--muted);
+    font-family: var(--mono);
+    font-size: 0.76rem;
+    }
+
+    .editor-tab.active {
+    border-color: var(--accent);
+    color: var(--ink);
+    }
+
+    .editor-status {
+    color: var(--faint);
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    text-align: right;
+    }
+
+    .editor-body {
+    display: grid;
+    grid-template-columns: 54px minmax(0, 1fr);
+    gap: 14px;
+    margin-top: 16px;
+    padding: 18px;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    background: color-mix(in srgb, var(--dark) 88%, transparent);
+    }
+
+    .gutter {
+    display: grid;
+    gap: 10px;
+    padding-top: 56px;
+    color: var(--faint);
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    text-align: right;
+    user-select: none;
+    }
+
+    .editor-copy {
+    transform: rotate(28deg);
+    }
+
+    .hero-copy:after {
+
+    .editor-copy .eyebrow {
+    margin-bottom: 14px;
+    color: var(--accent);
+    }
+
+    .editor-copy h1 {
+    max-width: 9ch;
+    font-family: var(--mono);
+    font-size: clamp(2.6rem, 6.4vw, 5.2rem);
+    line-height: 0.94;
+    }
+
+    .editor-copy .lead {
+    max-width: 62ch;
+    font-size: clamp(0.98rem, 1.5vw, 1.08rem);
+    }
+
+    .code-surface {
+    margin-top: 18px;
+    padding: 18px;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    background: linear-gradient(180deg, rgba(11, 18, 32, 0.98), rgba(11, 18, 32, 0.92));
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
+    }
+
+    .code-surface pre {
+    padding: 0;
+    background: transparent;
+    color: var(--code-ink);
+    white-space: pre-wrap;
+    }
+
+    .code-line {
+    display: block;
+    min-height: 1.55em;
+    }
+
+    .code-keyword {
+    color: var(--accent);
+    }
+
+    .code-accent {
+    color: var(--accent-2);
+    }
+
+    .code-muted {
+    color: var(--faint);
+    }
+
+    .inspector-pane {
+    display: grid;
+    align-content: space-between;
+    gap: 14px;
+    min-height: 560px;
+    }
+
+    .inspector-stack {
+    display: grid;
+    gap: 12px;
+    }
+
+    .inspector-card {
+    padding: 16px;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    background: color-mix(in srgb, var(--surface-2) 92%, transparent);
+    }
+
+    .inspector-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+    margin-top: 12px;
+    }
+
+    .inspector-metric {
+    padding: 12px;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    background: var(--surface);
+    }
+
+    .inspector-metric b {
+    display: block;
+    font-family: var(--mono);
+    font-size: 1.1rem;
+    }
+
+    .inspector-metric span {
+    display: block;
+    margin-top: 4px;
+    color: var(--muted);
+    font-size: 0.8rem;
+    line-height: 1.35;
+    }
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image: radial-gradient(rgba(24, 33, 30, 0.13) 1px, transparent 1px);
+    background-size: 14px 14px;
+    mask-image: linear-gradient(90deg, transparent, #000 20%, transparent 90%);
+    opacity: 0.22;
+    }
+
+    .hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 760px;
+    }
+
+    .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0 0 16px;
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    font-weight: 850;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    }
+
+    h1 {
+    max-width: 760px;
+    margin: 0;
+    font-family: var(--serif);
+    font-size: clamp(3rem, 7vw, 6.6rem);
+    line-height: 0.88;
+    letter-spacing: 0;
+    }
+
+    .lead {
+    max-width: 650px;
+    margin: 24px 0 0;
+    color: var(--muted);
+    font-size: clamp(1.02rem, 1.8vw, 1.2rem);
+    line-height: 1.7;
+    }
+
+    .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 30px;
+    }
+
+    .metrics {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10px;
+    max-width: 670px;
+    margin-top: 32px;
+    }
+
+    .metric,
+    .workflow-step,
+    .lesson-card,
+    .side-block,
+    .sim-card,
+    .feedback-panel {
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: color-mix(in srgb, var(--surface) 92%, transparent);
+    }
+
+    .metric {
+    padding: 14px;
+    }
+
+    .metric b {
+    display: block;
+    font-family: var(--mono);
+    font-size: 1.42rem;
+    letter-spacing: 0;
+    }
+
+    .metric span {
+    display: block;
+    margin-top: 3px;
+    color: var(--muted);
+    font-size: 0.83rem;
+    line-height: 1.35;
+    }
+
+    .chip-panel {
+    display: grid;
+    align-content: space-between;
+    min-height: 560px;
+    padding: 20px;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background:
+    linear-gradient(90deg, transparent 21px, rgba(255, 255, 255, 0.08) 21px 23px, transparent 23px),
+    var(--dark);
+    color: var(--surface);
+    box-shadow: var(--shadow);
+    }
+
+    [data-theme="dark"] .chip-panel {
+    background:
+    linear-gradient(90deg, transparent 21px, rgba(0, 0, 0, 0.08) 21px 23px, transparent 23px),
+    #e9f4ec;
+    color: #0e1915;
+    }
+
+    .chip-head,
+    .chip-status {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    font-weight: 850;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    }
+
+    .pin-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+    margin-top: 18px;
+    }
+
+    .pin {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 62px;
+    padding: 13px;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: var(--radius);
+    background: rgba(255, 255, 255, 0.075);
+    font-family: var(--mono);
+    }
+
+    [data-theme="dark"] .pin {
+    border-color: rgba(14, 25, 21, 0.14);
+    background: rgba(14, 25, 21, 0.045);
+    }
+
+    .pin b {
+    color: var(--accent-2);
+    font-size: 0.75rem;
+    text-align: right;
+    }
+
+    .circuit-art {
+    min-height: 190px;
+    margin-top: 22px;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: var(--radius);
+    background:
+    linear-gradient(90deg, transparent 0 17%, rgba(242, 165, 31, 0.62) 17% 19%, transparent 19% 46%, rgba(71, 220, 192,
+    0.58) 46% 48%, transparent 48% 74%, rgba(216, 79, 99, 0.50) 74% 76%, transparent 76%),
+    radial-gradient(circle at 15% 54%, var(--accent-2) 0 5px, transparent 6px),
+    radial-gradient(circle at 34% 36%, var(--accent) 0 5px, transparent 6px),
+    radial-gradient(circle at 66% 70%, var(--accent-3) 0 5px, transparent 6px),
+    radial-gradient(circle at 86% 38%, var(--accent-4) 0 5px, transparent 6px),
+    rgba(255, 255, 255, 0.06);
+    }
+
+    [data-theme="dark"] .circuit-art {
+    border-color: rgba(14, 25, 21, 0.11);
+    background-color: rgba(14, 25, 21, 0.035);
+    }
+
+    .section {
+    padding: 42px 0 0;
+    scroll-margin-top: 94px;
+    }
+
+    .section-head {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 18px;
+    align-items: end;
+    margin-bottom: 16px;
+    }
+
+    .kicker {
+    display: inline-block;
+    margin: 0 0 8px;
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 0.76rem;
+    font-weight: 850;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    }
+
+    h2 {
+    margin: 0;
+    font-family: var(--serif);
+    font-size: clamp(2rem, 4vw, 3.6rem);
+    line-height: 0.95;
+    letter-spacing: 0;
+    }
+
+    .section-head p {
+    max-width: 700px;
+    margin: 12px 0 0;
+    color: var(--muted);
+    line-height: 1.65;
+    }
+
+    .workflow-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 12px;
+    }
+
+    .workflow-step {
+    min-height: 150px;
+    padding: 18px;
+    background: var(--surface);
+    transition: transform 170ms ease, border-color 170ms ease, box-shadow 170ms ease;
+    }
+
+    .workflow-step:hover {
+    border-color: var(--accent);
+    box-shadow: var(--shadow-soft);
+    transform: translateY(-2px);
+    }
+
+    .workflow-step strong {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+    font-family: var(--mono);
+    color: var(--accent);
+    font-size: 0.82rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    }
+
+    .workflow-step span {
+    color: var(--muted);
+    line-height: 1.55;
+    }
+
+    .explorer-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 360px;
+    gap: 18px;
+    align-items: start;
+    }
+
+    .tool-strip {
+    position: sticky;
+    top: 76px;
+    z-index: 11;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 12px;
+    padding: 12px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: color-mix(in srgb, var(--surface) 88%, transparent);
+    backdrop-filter: blur(16px);
+    }
+
+    .search-field {
+    position: relative;
+    min-width: 0;
+    }
+
+    .search-field svg {
+    position: absolute;
+    left: 13px;
+    top: 50%;
+    color: var(--faint);
+    transform: translateY(-50%);
+    }
+
+    .search {
+    width: 100%;
+    min-height: 46px;
+    padding: 0 14px 0 42px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--surface);
+    color: var(--ink);
+    }
+
+    .search:focus {
+    border-color: var(--accent);
+    outline: 3px solid var(--focus);
+    outline-offset: 0;
+    }
+
+    .filters {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    }
+
+    .filter {
+    min-height: 46px;
+    padding: 0 13px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--surface);
+    color: var(--muted);
+    cursor: pointer;
+    font-weight: 850;
+    }
+
+    .filter[aria-pressed="true"] {
+    border-color: var(--accent);
+    background: var(--accent);
+    color: #ffffff;
+    }
+
+    .lesson-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    margin-top: 12px;
+    }
+
+    .lesson-card {
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    gap: 14px;
+    min-height: 238px;
+    padding: 18px;
+    cursor: pointer;
+    text-align: left;
+    transition: transform 170ms ease, border-color 170ms ease, box-shadow 170ms ease, background 170ms ease;
+    }
+
+    .lesson-card:hover,
+    .lesson-card[aria-selected="true"] {
+    border-color: var(--accent);
+    box-shadow: var(--shadow-soft);
+    transform: translateY(-2px);
+    }
+
+    .lesson-card[aria-selected="true"] {
+    background: linear-gradient(135deg, color-mix(in srgb, var(--accent) 10%, var(--surface)), var(--surface));
+    }
+
+    .lesson-card[hidden] {
+    display: none;
+    }
+
+    .card-top,
+    .card-foot,
+    .result-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    }
+
+    .lesson-id {
+    font-family: var(--mono);
+    color: var(--accent);
+    font-size: 0.82rem;
+    font-weight: 900;
+    }
+
+    .level {
+    padding: 5px 9px;
+    border-radius: 999px;
+    background: var(--surface-3);
+    color: var(--muted);
+    font-size: 0.72rem;
+    font-weight: 900;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    }
+
+    .card-title {
+    display: block;
+    margin: 0 0 8px;
+    font-size: 1.35rem;
+    font-weight: 850;
+    line-height: 1.12;
+    }
+
+    .lesson-card p {
+    margin: 0;
+    color: var(--muted);
+    line-height: 1.5;
+    }
+
+    .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    }
+
+    .tag {
+    display: inline-flex;
+    align-items: center;
+    min-height: 29px;
+    padding: 0 9px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    color: var(--muted);
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    white-space: nowrap;
+    }
+
+    .empty {
+    display: none;
+    margin: 14px 0 0;
+    padding: 20px;
+    border: 1px dashed var(--line-strong);
+    border-radius: var(--radius);
+    color: var(--muted);
+    background: color-mix(in srgb, var(--surface) 70%, transparent);
+    }
+
+    .empty.is-visible {
+    display: block;
+    }
+
+    .detail-panel {
+    position: sticky;
+    top: 146px;
+    display: grid;
+    gap: 14px;
+    }
+
+    .side-block {
+    padding: 18px;
+    }
+
+    .side-block h3 {
+    margin: 0 0 12px;
+    font-size: 1rem;
+    }
+
+    .detail-title {
+    margin: 0;
+    font-family: var(--serif);
+    font-size: 2rem;
+    line-height: 1;
+    }
+
+    .detail-text {
+    margin: 10px 0 0;
+    color: var(--muted);
+    line-height: 1.58;
+    }
+
+    .detail-links {
+    display: grid;
+    gap: 10px;
+    margin-top: 14px;
+    }
+
+    .mini-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    min-height: 42px;
+    padding: 0 11px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--surface);
+    color: var(--muted);
+    font-weight: 800;
+    }
+
+    .mini-link:hover {
+    border-color: var(--accent);
+    color: var(--ink);
+    }
+
+    pre {
+    margin: 0;
+    padding: 14px;
+    overflow: auto;
+    border-radius: var(--radius);
+    background: var(--code-bg);
+    color: var(--code-ink);
+    font-family: var(--mono);
+    font-size: 0.84rem;
+    line-height: 1.55;
+    }
+
+    code {
+    font-family: var(--mono);
+    color: var(--accent);
+    }
+
+    .simulation-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 320px;
+    gap: 18px;
+    align-items: stretch;
+    }
+
+    .sim-stage {
+    position: relative;
+    min-height: 360px;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background:
+    radial-gradient(circle at 12% 18%, color-mix(in srgb, var(--accent-2) 24%, transparent), transparent 12rem),
+    linear-gradient(135deg, var(--surface), var(--surface-2));
+    box-shadow: var(--shadow-soft);
+    }
+
+    .sim-card {
+    position: absolute;
+    inset: 18px;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 260px;
+    gap: 18px;
+    align-items: stretch;
+    padding: 22px;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateX(18px);
+    transition: opacity 260ms ease, transform 260ms ease;
+    }
+
+    .sim-card.is-active {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateX(0);
+    }
+
+    .sim-card h3 {
+    margin: 0;
+    font-family: var(--serif);
+    font-size: clamp(2rem, 4vw, 3.8rem);
+    line-height: 0.95;
+    }
+
+    .sim-card p {
+    max-width: 570px;
+    color: var(--muted);
+    line-height: 1.62;
+    }
+
+    .sim-visual {
+    display: grid;
+    place-items: center;
+    min-height: 260px;
+    border-radius: var(--radius);
+    background:
+    linear-gradient(90deg, transparent 0 12%, rgba(10, 143, 121, 0.32) 12% 14%, transparent 14% 46%, rgba(242, 165, 31,
+    0.50) 46% 48%, transparent 48%),
+    var(--dark);
+    color: var(--surface);
+    }
+
+    [data-theme="dark"] .sim-visual {
+    background:
+    linear-gradient(90deg, transparent 0 12%, rgba(10, 143, 121, 0.36) 12% 14%, transparent 14% 46%, rgba(242, 165, 31,
+    0.54) 46% 48%, transparent 48%),
+    #ecf7ef;
+    color: #0e1915;
+    }
+
+    .sim-controls {
+    display: grid;
+    gap: 10px;
+    }
+
+    .sim-tab {
+    display: grid;
+    gap: 4px;
+    padding: 13px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--surface);
+    color: var(--muted);
+    cursor: pointer;
+    text-align: left;
+    }
+
+    .sim-tab[aria-selected="true"] {
+    border-color: var(--accent);
+    color: var(--ink);
+    box-shadow: var(--shadow-soft);
+    }
+
+    .sim-tab strong {
+    color: inherit;
+    }
+
+    .resource-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+    }
+
+    .resource-link {
+    display: grid;
+    gap: 8px;
+    min-height: 150px;
+    padding: 18px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--surface);
+    transition: transform 170ms ease, border-color 170ms ease, box-shadow 170ms ease;
+    }
+
+    .resource-link:hover {
+    border-color: var(--accent);
+    box-shadow: var(--shadow-soft);
+    transform: translateY(-2px);
+    }
+
+    .resource-link strong {
+    font-size: 1.05rem;
+    }
+
+    .resource-link span {
+    color: var(--muted);
+    line-height: 1.5;
+    }
+
+    .feedback-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 0.95fr) minmax(320px, 1.05fr);
+    gap: 18px;
+    align-items: stretch;
+    }
+
+    .feedback-panel {
+    padding: 20px;
+    background: var(--surface);
+    }
+
+    .rating-group {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 8px;
+    margin: 10px 0 14px;
+    }
+
+    .rating {
+    min-height: 42px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--surface-2);
+    cursor: pointer;
+    font-family: var(--mono);
+    font-weight: 900;
+    }
+
+    .rating[aria-pressed="true"] {
+    border-color: var(--accent);
+    background: var(--accent);
+    color: #ffffff;
+    }
+
+    label {
+    display: block;
+    margin: 14px 0 7px;
+    font-weight: 850;
+    }
+
+    textarea {
+    width: 100%;
+    min-height: 118px;
+    resize: vertical;
+    padding: 12px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--surface-2);
+    color: var(--ink);
+    }
+
+    .form-status {
+    min-height: 24px;
+    margin: 10px 0 0;
+    color: var(--accent);
+    font-weight: 800;
+    }
+
+    .audit-list {
+    display: grid;
+    gap: 10px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    }
+
+    .audit-list li {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    padding: 12px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--surface);
+    color: var(--muted);
+    line-height: 1.45;
+    }
+
+    .audit-list svg {
+    flex: 0 0 auto;
+    color: var(--accent);
+    margin-top: 1px;
+    }
+
+    .toast {
+    position: fixed;
+    right: 18px;
+    bottom: 18px;
+    z-index: 50;
+    max-width: min(360px, calc(100% - 36px));
+    padding: 14px 16px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--dark);
+    color: var(--surface);
+    box-shadow: var(--shadow);
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(12px);
+    transition: opacity 200ms ease, transform 200ms ease;
+    }
+
+    .toast.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+    }
+
+    footer {
+    padding: 28px 0 34px;
+    border-top: 1px solid var(--line);
+    color: var(--muted);
+    }
+
+    .footer-inner {
+    display: flex;
+    justify-content: space-between;
+    gap: 18px;
+    font-size: 0.88rem;
+    line-height: 1.45;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+    *,
+    *:before,
+    *:after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.001ms !important;
+    animation-duration: 0.001ms !important;
+    }
+    }
+
+    @media (max-width: 1080px) {
+    .topbar-inner {
+    grid-template-columns: auto auto;
+    }
+
+    .primary-nav {
+    position: fixed;
+    inset: 76px 12px auto;
+    display: none;
+    flex-direction: column;
+    align-items: stretch;
+    padding: 12px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--surface);
+    box-shadow: var(--shadow);
+    }
+
+    body.nav-open .primary-nav {
+    display: flex;
+    }
+
+    .primary-nav a {
+    justify-content: space-between;
+    }
+
+    .actions {
+    grid-column: 2;
+    }
+
+    .menu-button {
+    display: grid;
+    }
+
+    .hero,
+    .explorer-grid,
+    .simulation-layout,
+    .feedback-layout {
+    grid-template-columns: 1fr;
+    }
+
+    .chip-panel {
+    min-height: auto;
+    }
+
+    .detail-panel {
+    position: static;
+    }
+
+    .workflow-grid,
+    .resource-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .sim-stage {
+    min-height: 470px;
+    }
+    }
+
+    @media (max-width: 760px) {
+    .shell {
+    width: min(100% - 22px, 1240px);
+    }
+
+    .topbar-inner {
+    min-height: 70px;
+    gap: 10px;
+    }
+
+    .brand-text span,
+    .readme-button {
+    display: none;
+    }
+
+    .breadcrumb {
+    padding-top: 12px;
+    }
+
+    .hero {
+    padding-top: 16px;
+    }
+
+    .hero-copy {
+    min-height: auto;
+    padding: 22px;
+    }
+
+    h1 {
+    font-size: clamp(2.75rem, 15vw, 4.5rem);
+    }
+
+    .metrics,
+    .workflow-grid,
+    .lesson-grid,
+    .tool-strip,
+    .resource-grid,
+    .footer-inner {
+    grid-template-columns: 1fr;
+    }
+
+    .pin-grid,
+    .rating-group {
+    grid-template-columns: 1fr;
+    }
+
+    .filters {
+    overflow-x: auto;
+    padding-bottom: 2px;
+    }
+
+    .filter {
+    flex: 0 0 auto;
+    }
+
+    .sim-stage {
+    min-height: 620px;
+    }
+
+    .sim-card {
+    grid-template-columns: 1fr;
+    inset: 12px;
+    padding: 16px;
+    }
+
+    .sim-visual {
+    min-height: 180px;
+    }
+    }
     </style>
 </head>
 
 <body>
-    <header>
-        <div>
-            <h1>AVR Bare Metal — Visual Summary</h1>
-            <div class="muted">ATmega328P lessons & quick links — 16 MHz examples</div>
-        </div>
-        <div class="badges">
-            <img src="https://img.shields.io/badge/Git%20Commits-25-0f766e?style=for-the-badge&logo=git&logoColor=white"
-                alt="commits">
-            <img src="https://img.shields.io/badge/Learning%20Days-29-1d4ed8?style=for-the-badge&logo=calendar&logoColor=white"
-                alt="days">
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="topbar">
+        <div class="shell topbar-inner">
+            <a class="brand" href="../README.md" aria-label="Open AVR Bare Metal README">
+                <span class="brand-mark" aria-hidden="true">
+                    <svg width="25" height="25" viewBox="0 0 24 24" fill="none">
+                        <path d="M7 8h10v8H7z" stroke="currentColor" stroke-width="1.8" />
+                        <path d="M4 9h3M4 15h3M17 9h3M17 15h3M9 5v3M15 5v3M9 16v3M15 16v3" stroke="currentColor"
+                            stroke-width="1.8" stroke-linecap="round" />
+                    </svg>
+                </span>
+                <span class="brand-text">
+                    <strong>AVR Bare Metal</strong>
+                    <span>ATmega328P learning cockpit</span>
+                </span>
+            </a>
+
+            <nav id="primaryNav" class="primary-nav" aria-label="Primary navigation">
+                <a href="#overview" data-nav-link>Overview</a>
+                <a href="#path" data-nav-link>Path</a>
+                <a href="#lessons" data-nav-link>Lessons</a>
+                <a href="#simulations" data-nav-link>Simulations</a>
+                <a href="#resources" data-nav-link>Resources</a>
+                <a href="#feedback" data-nav-link>Feedback</a>
+            </nav>
+
+            <div class="actions">
+                <a class="button readme-button" href="../README.md">
+                    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                        <path d="M4 19.5V5.8A2.8 2.8 0 0 1 6.8 3H20v17H6.5A2.5 2.5 0 0 0 4 22" stroke="currentColor"
+                            stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+                        <path d="M8 7h8M8 11h8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+                    </svg>
+                    README
+                </a>
+                <button id="themeButton" class="icon-button" type="button" aria-label="Toggle dark mode"
+                    title="Toggle dark mode">
+                    <svg id="themeIcon" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                        <path
+                            d="M12 3v2.2M12 18.8V21M4.2 4.2l1.6 1.6M18.2 18.2l1.6 1.6M3 12h2.2M18.8 12H21M4.2 19.8l1.6-1.6M18.2 5.8l1.6-1.6"
+                            stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+                        <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.8" />
+                    </svg>
+                </button>
+                <button id="menuButton" class="icon-button menu-button" type="button" aria-expanded="false"
+                    aria-controls="primaryNav" aria-label="Open navigation">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                        <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.9"
+                            stroke-linecap="round" />
+                    </svg>
+                </button>
+            </div>
         </div>
     </header>
 
-    <div class="layout">
-        <div>
-            <section class="panel">
-                <strong>Overview</strong>
-                <p class="muted">This page provides a compact, clickable summary of lessons, simulation files, and build
-                    steps. Use it as a quick reference while developing or simulating.</p>
-                <div style="margin-top:10px;display:flex;align-items:center;gap:10px;flex-wrap:wrap">
-                    <input id="q" class="search" placeholder="Filter lessons (type to search)"
-                        aria-label="search lessons">
-                    <div class="controls">
-                        <button id="toggleTheme" class="small">Toggle Dark</button>
+    <div class="shell">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+            <a href="../README.md">README</a>
+            <span aria-hidden="true">/</span>
+            <span>docs</span>
+            <span aria-hidden="true">/</span>
+            <span aria-current="page">graphics.html</span>
+        </nav>
+    </div>
+
+    <main id="main">
+        <section id="overview" class="shell hero" aria-labelledby="pageTitle">
+            <aside class="editor-pane" aria-label="Project explorer">
+                <div class="workspace-label">
+                    <span>Explorer</span>
+                    <span>avr-bare-metal</span>
+                </div>
+                <div class="file-tree">
+                    <div class="file-item active"><strong>lesson_01</strong><span>main.c</span></div>
+                    <div class="file-item"><strong>lesson_04</strong><span>LCD helpers</span></div>
+                    <div class="file-item"><strong>lesson_07</strong><span>INT0 / ISR</span></div>
+                    <div class="file-item"><strong>lesson_12</strong><span>PWM + ADC</span></div>
+                    <div class="file-item"><strong>project_01</strong><span>simulation</span></div>
+                </div>
+                <div class="code-surface" style="margin-top:16px;">
+                    <pre aria-label="Quick file preview"><span class="code-keyword">main.c</span>
+<span class="code-line">#define F_CPU 16000000UL</span>
+<span class="code-line">#include &lt;avr/io.h&gt;</span>
+<span class="code-line">#include &lt;util/delay.h&gt;</span>
+<span class="code-line">...</span></pre>
+                </div>
+            </aside>
+
+            <section class="editor-canvas" aria-labelledby="pageTitle">
+                <div class="editor-window">
+                    <div class="editor-toolbar">
+                        <div class="editor-tabs" aria-label="Open tabs">
+                            <span class="editor-tab active">graphics.html</span>
+                            <span class="editor-tab">lesson_01/main.c</span>
+                            <span class="editor-tab">README.md</span>
+                        </div>
+                        <div class="editor-status">16 MHz · avr-gcc · Proteus</div>
+                    </div>
+
+                    <div class="editor-body">
+                        <div class="gutter" aria-hidden="true">
+                            <span>01</span>
+                            <span>02</span>
+                            <span>03</span>
+                            <span>04</span>
+                            <span>05</span>
+                            <span>06</span>
+                            <span>07</span>
+                            <span>08</span>
+                        </div>
+
+                        <div class="editor-copy">
+                            <p class="eyebrow">editor view / avr learning</p>
+                            <h1 id="pageTitle">A tactile map for bare-metal AVR learning.</h1>
+                            <p class="lead">A compact editor-style workspace for moving through GPIO, LCD control,
+                                interrupts, timers, ADC, PWM, UART, and I2C lessons without losing the build and
+                                simulation loop.</p>
+                            <div class="hero-actions">
+                                <a class="button primary" href="#lessons">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                        <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="1.9"
+                                            stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+                                    Explore lessons
+                                </a>
+                                <a class="button" href="#simulations">Open simulations</a>
+                            </div>
+                            <div class="code-surface">
+                                <pre><span class="code-muted">// build loop</span>
+<span class="code-line"><span class="code-keyword">#define</span> F_CPU 16000000UL</span>
+<span class="code-line"><span class="code-keyword">make</span> create</span>
+<span class="code-line"><span class="code-accent">simulate</span> → <span class="code-keyword">flash</span></span></pre>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
 
-            <section class="panel" style="margin-top:14px">
-                <strong>Lessons (summary)</strong>
-                <details open>
-                    <summary class="small">Show / hide lesson list</summary>
-                    <ul id="lessonList" class="lessons">
-                        <li data-title="led blink"><a href="../lesson_01/">lesson_01</a> — LED blink (PB0, basic
-                            timing).</li>
-                        <li data-title="7 segment"><a href="../lesson_02/">lesson_02</a> — 7-segment counter on PORTD.
-                        </li>
-                        <li data-title="button input"><a href="../lesson_03/">lesson_03</a> — Button input + debounce
-                            example.</li>
-                        <li data-title="lcd 8 bit"><a href="../lesson_04/">lesson_04</a> — LCD 8-bit mode (helper
-                            functions).</li>
-                        <li data-title="lcd 4 bit"><a href="../lesson_05/">lesson_05</a> — LCD 4-bit mode (nibble
-                            writes, timing).</li>
-                        <li data-title="blink pb5"><a href="../lesson_06/">lesson_06</a> — Blink example on PB5 (D13).
-                        </li>
-                        <li data-title="interrupts"><a href="../lesson_07/">lesson_07</a> — External interrupts with ISR
-                            handlers.</li>
-                        <li data-title="timer playground"><a href="../lesson_08/">lesson_08</a> — Timer/interrupt
-                            playground.</li>
-                        <li data-title="io experiments"><a href="../lesson_09/">lesson_09</a> — I/O experiments and
-                            small helpers.</li>
-                        <li data-title="peripherals"><a href="../lesson_10/">lesson_10</a> — Peripheral experiments
-                            (timing).</li>
-                        <li data-title="proteus timing"><a href="../lesson_11/">lesson_11</a> — Proteus-tied timing
-                            examples.</li>
-                        <li data-title="pwm adc"><a href="../lesson_12/">lesson_12</a> — PWM + ADC integration.</li>
-                        <li data-title="uart"><a href="../lesson_13/">lesson_13</a> — UART RX with ISR and serial
-                            handling.</li>
-                        <li data-title="combined"><a href="../lesson_14/">lesson_14</a> — Combined features /
-                            project-ready examples.</li>
-                    </ul>
-                </details>
-            </section>
+            <aside class="inspector-pane" aria-label="ATmega328P inspector">
+                <div class="inspector-stack">
+                    <div class="panel-title">
+                        <span>Inspector</span>
+                        <span>ATmega328P</span>
+                    </div>
+                    <div class="inspector-card">
+                        <div class="chip-head">
+                            <span>Hardware map</span>
+                            <span>F_CPU 16000000UL</span>
+                        </div>
+                        <div class="pin-grid">
+                            <div class="pin"><span>PORTB</span><b>LED / PWM</b></div>
+                            <div class="pin"><span>PORTD</span><b>7-seg / RX</b></div>
+                            <div class="pin"><span>ADC0</span><b>analog in</b></div>
+                            <div class="pin"><span>INT0</span><b>interrupt</b></div>
+                            <div class="pin"><span>TIMER1</span><b>PWM</b></div>
+                            <div class="pin"><span>USART0</span><b>serial</b></div>
+                        </div>
+                    </div>
+                    <div class="inspector-card">
+                        <div class="inspector-grid" aria-label="Repository highlights">
+                            <div class="inspector-metric"><b>15</b><span>Incremental lesson folders</span></div>
+                            <div class="inspector-metric"><b>6</b><span>Proteus simulation files</span></div>
+                            <div class="inspector-metric"><b>16M</b><span>ATmega328P clock target</span></div>
+                            <div class="inspector-metric"><b>1</b><span>Single-file C workflow</span></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="chip-status">
+                    <span>single-file C</span>
+                    <span>Makefile build</span>
+                </div>
+            </aside>
+        </section>
 
-            <section class="panel" style="margin-top:14px">
-                <strong>Simulation files (what they show)</strong>
-                <details>
-                    <summary class="small">View simulations</summary>
-                    <ul class="sims">
-                        <li data-title="lesson3 sim"><a
-                                href="../lesson_03/simulation_file_lession_three.sim1">lesson_03</a> — button & LED
-                            wiring for input testing.</li>
-                        <li data-title="lesson4 sim"><a
-                                href="../lesson_04/simulation_file_lession_four.sim1">lesson_04</a> — LCD wiring and
-                            timing validation.</li>
-                        <li data-title="lesson7 sim"><a
-                                href="../lesson_07/simulation_file_lession_seven.sim1">lesson_07</a> — external
-                            interrupt triggers and response.</li>
-                        <li data-title="lesson11 sim"><a
-                                href="../lesson_11/simulation_file_lession_11.sim1">lesson_11</a> — advanced timing
-                            scenarios.</li>
-                        <li data-title="lesson12 sim"><a
-                                href="../lesson_12/simulation_file_lession_12.sim1">lesson_12</a> — PWM + ADC signal
-                            observation.</li>
+        <section id="path" class="shell section" aria-labelledby="pathTitle">
+            <div class="section-head">
+                <div>
+                    <span class="kicker">learning path</span>
+                    <h2 id="pathTitle">From register writes to integrated peripherals.</h2>
+                    <p>The repository stays deliberately close to the metal. This path keeps the editing, building,
+                        simulation, and flashing rhythm visible while you move through each concept.</p>
+                </div>
+            </div>
+            <div class="workflow-grid" aria-label="Recommended build workflow">
+                <div class="workflow-step"><strong>01 / edit</strong><span>Keep <code>F_CPU</code> before AVR headers
+                        and preserve the lesson's register-first style.</span></div>
+                <div class="workflow-step"><strong>02 / build</strong><span>Run <code>make create</code> inside a lesson
+                        directory to produce the HEX file.</span></div>
+                <div class="workflow-step"><strong>03 / simulate</strong><span>Open the matching Proteus file and attach
+                        the generated HEX to the MCU.</span></div>
+                <div class="workflow-step"><strong>04 / flash</strong><span>Use <code>make upload</code> when hardware
+                        is connected and the serial port is ready.</span></div>
+            </div>
+        </section>
+
+        <section id="lessons" class="shell section" aria-labelledby="lessonsTitle">
+            <div class="section-head">
+                <div>
+                    <span class="kicker">lesson explorer</span>
+                    <h2 id="lessonsTitle">Search by concept, register, or difficulty.</h2>
+                    <p>Choose a lesson to update the contextual panel, jump to the folder, or copy the exact build
+                        command for the current topic.</p>
+                </div>
+                <span id="lessonCount" class="tag" aria-live="polite">15 shown</span>
+            </div>
+
+            <div class="explorer-grid">
+                <div>
+                    <div class="tool-strip" aria-label="Lesson controls">
+                        <div class="search-field">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                <circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="1.8" />
+                                <path d="m16.5 16.5 4 4" stroke="currentColor" stroke-width="1.8"
+                                    stroke-linecap="round" />
+                            </svg>
+                            <input id="lessonSearch" class="search" type="search"
+                                placeholder="Filter by PORTD, UART, LCD, ADC..."
+                                aria-label="Filter lessons and simulations">
+                        </div>
+                        <div class="filters" role="group" aria-label="Difficulty filters">
+                            <button class="filter" type="button" data-filter="all" aria-pressed="true">All</button>
+                            <button class="filter" type="button" data-filter="simple"
+                                aria-pressed="false">Simple</button>
+                            <button class="filter" type="button" data-filter="medium"
+                                aria-pressed="false">Medium</button>
+                            <button class="filter" type="button" data-filter="hard" aria-pressed="false">Hard</button>
+                        </div>
+                    </div>
+                    <div id="lessonGrid" class="lesson-grid" role="listbox" aria-label="AVR lessons"></div>
+                    <p id="emptyState" class="empty">No lessons match that filter. Try <code>PORTD</code>,
+                        <code>INT0</code>, <code>LCD</code>, <code>UART</code>, or <code>ADC</code>.</p>
+                </div>
+
+                <aside class="detail-panel" aria-label="Selected lesson details">
+                    <section class="side-block">
+                        <span id="detailId" class="lesson-id">lesson_01</span>
+                        <h3 id="detailTitle" class="detail-title">GPIO Blink</h3>
+                        <p id="detailText" class="detail-text">First output loop with PB0, register writes, and delay
+                            timing.</p>
+                        <div id="detailTags" class="tags" aria-label="Selected lesson tags"></div>
+                        <div class="detail-links">
+                            <a id="openLesson" class="mini-link" href="../lesson_01/">
+                                Open folder
+                                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                    <path d="M7 17 17 7M9 7h8v8" stroke="currentColor" stroke-width="1.9"
+                                        stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                            </a>
+                            <button id="copyCommand" class="mini-link" type="button">
+                                Copy build command
+                                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                    <path d="M8 8V5.8A1.8 1.8 0 0 1 9.8 4H18a2 2 0 0 1 2 2v8.2a1.8 1.8 0 0 1-1.8 1.8H16"
+                                        stroke="currentColor" stroke-width="1.8" />
+                                    <rect x="4" y="8" width="12" height="12" rx="2" stroke="currentColor"
+                                        stroke-width="1.8" />
+                                </svg>
+                            </button>
+                        </div>
+                    </section>
+                    <section class="side-block">
+                        <h3>Quick Commands</h3>
+                        <pre id="commandPreview">cd lesson_01
+make create</pre>
+                    </section>
+                </aside>
+            </div>
+        </section>
+
+        <section id="simulations" class="shell section" aria-labelledby="simTitle">
+            <div class="section-head">
+                <div>
+                    <span class="kicker">simulation carousel</span>
+                    <h2 id="simTitle">Proteus-backed checkpoints.</h2>
+                    <p>Switch between simulation files and open the exact local path for input, LCD, interrupt, timer,
+                        timing, PWM, and ADC checks.</p>
+                </div>
+            </div>
+            <div class="simulation-layout">
+                <div id="simStage" class="sim-stage" aria-live="polite"></div>
+                <div id="simControls" class="sim-controls" role="tablist" aria-label="Simulation files"></div>
+            </div>
+        </section>
+
+        <section id="resources" class="shell section" aria-labelledby="resourcesTitle">
+            <div class="section-head">
+                <div>
+                    <span class="kicker">quick links</span>
+                    <h2 id="resourcesTitle">Open the right artifact fast.</h2>
+                    <p>The page keeps the most common repository destinations one touch away, including mini-projects
+                        and documentation.</p>
+                </div>
+            </div>
+            <div class="resource-grid">
+                <a class="resource-link" href="../README.md"><strong>Main README</strong><span>Repository overview,
+                        learning path, and simulation notes.</span></a>
+                <a class="resource-link" href="../project_01/"><strong>project_01</strong><span>Integrated mini-project
+                        with its own Proteus simulation file.</span></a>
+                <a class="resource-link" href="../project_02/"><strong>project_02</strong><span>Combined practice around
+                        later peripheral concepts.</span></a>
+            </div>
+        </section>
+
+        <section id="feedback" class="shell section" aria-labelledby="feedbackTitle">
+            <div class="section-head">
+                <div>
+                    <span class="kicker">feedback loop</span>
+                    <h2 id="feedbackTitle">Capture usability notes while they are fresh.</h2>
+                    <p>Feedback is stored locally in this browser session, which keeps the page self-contained and
+                        private while still giving you a structured place to note improvements.</p>
+                </div>
+            </div>
+            <div class="feedback-layout">
+                <form id="feedbackForm" class="feedback-panel">
+                    <label id="ratingLabel">How useful is this lesson map?</label>
+                    <div class="rating-group" role="group" aria-labelledby="ratingLabel">
+                        <button class="rating" type="button" data-rating="1" aria-pressed="false">1</button>
+                        <button class="rating" type="button" data-rating="2" aria-pressed="false">2</button>
+                        <button class="rating" type="button" data-rating="3" aria-pressed="false">3</button>
+                        <button class="rating" type="button" data-rating="4" aria-pressed="false">4</button>
+                        <button class="rating" type="button" data-rating="5" aria-pressed="false">5</button>
+                    </div>
+                    <label for="feedbackText">What should be refined next?</label>
+                    <textarea id="feedbackText" name="feedbackText"
+                        placeholder="Navigation, search, simulations, mobile layout..."></textarea>
+                    <button class="button primary" type="submit">Save feedback</button>
+                    <p id="formStatus" class="form-status" aria-live="polite"></p>
+                </form>
+                <div class="feedback-panel">
+                    <h3>Accessibility and performance checks</h3>
+                    <ul class="audit-list">
+                        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                <path d="m5 12 4 4L19 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg><span>Sticky navigation, skip link, landmarks, ARIA labels, and keyboard-friendly
+                                controls.</span></li>
+                        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                <path d="m5 12 4 4L19 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg><span>No remote assets, no image payloads, and inline SVG/CSS graphics for fast local
+                                loading.</span></li>
+                        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                <path d="m5 12 4 4L19 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg><span>Responsive layouts for desktop, tablet, and narrow mobile viewports with
+                                touch-sized controls.</span></li>
                     </ul>
-                </details>
-                <div class="muted">Tip: build the lesson to produce the <code>.hex</code> file, then point Proteus MCU
-                    to it.</div>
-            </section>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="shell footer-inner">
+            <span>Generated for local repository browsing. June 2026.</span>
+            <span>Preserves lesson paths and intentional simulation filename spelling.</span>
         </div>
-
-        <aside>
-            <div class="panel">
-                <strong>Quick Commands</strong>
-                <pre>make -C lesson_03
-make -C lesson_04
-make -C lesson_12
-make -C project_01</pre>
-                <p class="muted">Replace the folder name for other lessons.</p>
-            </div>
-
-            <div class="panel" style="margin-top:12px">
-                <strong>Hardware Snapshot</strong>
-                <svg class="mc" viewBox="0 0 360 180" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                    <rect x="10" y="10" width="340" height="160" rx="12" fill="#0b1220" opacity="0.06" />
-                    <rect x="30" y="28" width="160" height="124" rx="8" fill="#fff" stroke="#e6edf3" />
-                    <text x="46" y="56" font-size="12" fill="#071232">ATmega328P</text>
-                    <text x="46" y="74" font-size="11" fill="#475569">F_CPU = 16 MHz</text>
-                    <circle cx="260" cy="64" r="28" fill="#fff" stroke="#e6edf3" />
-                    <text x="238" y="70" font-size="12" fill="#071232">PORTB</text>
-                    <text x="234" y="86" font-size="11" fill="#475569">LEDs</text>
-                </svg>
-                <div class="muted">Simple visual: core MCU block, quick reference for ports used in lessons.</div>
-            </div>
-
-            <div class="panel" style="margin-top:12px">
-                <strong>Links</strong>
-                <ul style="padding-left:16px;margin:8px 0">
-                    <li><a href="../README.md">README</a></li>
-                    <li><a href="../project_01/">project_01</a></li>
-                </ul>
-            </div>
-        </aside>
-    </div>
-
-    <footer style="margin-top:22px;font-size:0.9rem;color:#334155">
-        Generated: June 2026 — open this file in a browser for a compact visual summary and quick links.
     </footer>
+
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
     <script>
-        // Dark mode toggle
-        const btn = document.getElementById('toggleTheme');
-        if (btn) btn.addEventListener('click', () => {
-            const cur = document.documentElement.getAttribute('data-theme');
-            document.documentElement.setAttribute('data-theme', cur === 'dark' ? '' : 'dark');
-            btn.textContent = (cur === 'dark') ? 'Toggle Dark' : 'Toggle Light';
+        const lessons = [
+            { id: "lesson_01", title: "GPIO Blink", level: "simple", href: "../lesson_01/", text: "First output loop with PB0, register writes, and delay timing.", tags: ["DDRB", "PORTB", "_delay_ms"], search: "led blink gpio output pb0 ddrb portb timing simple" },
+            { id: "lesson_02", title: "7-Segment Counter", level: "simple", href: "../lesson_02/", text: "PORTD-driven numeral patterns for basic display output.", tags: ["PORTD", "counter"], search: "7 segment counter portd output simple" },
+            { id: "lesson_03", title: "Button Input", level: "simple", href: "../lesson_03/", text: "Read a digital input, debounce the switch, and respond with an LED.", tags: ["DDRD", "PIND", "sim"], search: "button input debounce pind ddrd simulation simple" },
+            { id: "lesson_04", title: "LCD 8-Bit Mode", level: "medium", href: "../lesson_04/", text: "Drive LCD data and control lines with the first reusable helpers.", tags: ["LCD", "8-bit", "sim"], search: "lcd 8 bit ddrb ddrd portb portd simulation medium" },
+            { id: "lesson_05", title: "LCD 4-Bit Mode", level: "medium", href: "../lesson_05/", text: "Split writes into nibbles and respect LCD timing between transfers.", tags: ["LCD", "4-bit", "nibble"], search: "lcd 4 bit nibble timing medium" },
+            { id: "lesson_06", title: "PB5 Blink", level: "simple", href: "../lesson_06/", text: "Arduino D13-style blink focused on PB5 output behavior.", tags: ["PB5", "D13"], search: "blink pb5 d13 output simple" },
+            { id: "lesson_07", title: "External Interrupts", level: "medium", href: "../lesson_07/", text: "Configure INT0, edge triggers, ISR handlers, and global interrupts.", tags: ["EICRA", "EIMSK", "sim"], search: "external interrupts int0 eicra eimsk isr simulation medium" },
+            { id: "lesson_08", title: "Timer Playground", level: "medium", href: "../lesson_08/", text: "Explore timed events and interrupt-driven flow on the MCU.", tags: ["timer", "ISR", "sim"], search: "timer interrupt playground simulation medium" },
+            { id: "lesson_09", title: "I/O Experiments", level: "simple", href: "../lesson_09/", text: "Small register exercises and helper patterns for everyday port work.", tags: ["I/O", "helpers"], search: "io experiments helpers simple" },
+            { id: "lesson_10", title: "Peripheral Timing", level: "medium", href: "../lesson_10/", text: "Practice timing-sensitive peripheral interactions and setup flow.", tags: ["timing", "peripheral"], search: "peripherals timing medium" },
+            { id: "lesson_11", title: "Proteus Timing", level: "medium", href: "../lesson_11/", text: "Simulation-backed timing scenarios for checking behavior before hardware.", tags: ["Proteus", "sim"], search: "proteus timing simulation medium" },
+            { id: "lesson_12", title: "PWM + ADC", level: "hard", href: "../lesson_12/", text: "Read analog input and shape PWM output with timer and ADC registers.", tags: ["TCCR1A", "ADMUX", "sim"], search: "pwm adc tccr1a tccr1b admux adcsra simulation hard" },
+            { id: "lesson_13", title: "UART RX", level: "hard", href: "../lesson_13/", text: "Serial receive flow with USART registers and interrupt handling.", tags: ["USART0", "UBRR0", "ISR"], search: "uart rx interrupt ucsr0b ubrr0 usart rx isr serial hard" },
+            { id: "lesson_14", title: "Combined Features", level: "hard", href: "../lesson_14/", text: "Project-ready examples that combine earlier building blocks.", tags: ["integration", "project"], search: "combined features project ready examples hard" },
+            { id: "lesson_15", title: "I2C Template", level: "hard", href: "../lesson_15/", text: "Starter workspace for two-wire communication experiments.", tags: ["I2C", "TWI", "template"], search: "i2c twi template scl sda hard" }
+        ];
+
+        const simulations = [
+            { id: "lesson_03", title: "Button input", href: "../lesson_03/simulation_file_lession_three.sim1", text: "Button and LED wiring for input testing before moving to hardware." },
+            { id: "lesson_04", title: "LCD 8-bit timing", href: "../lesson_04/simulation_file_lession_four.sim1", text: "LCD wiring and timing validation for data and control lines." },
+            { id: "lesson_07", title: "External interrupt", href: "../lesson_07/simulation_file_lession_seven.sim1", text: "INT0 trigger behavior and interrupt response visualization." },
+            { id: "lesson_08", title: "Timer playground", href: "../lesson_08/simulation_file_lession_8.sim1", text: "Timer and interrupt behavior in a dedicated Proteus setup." },
+            { id: "lesson_11", title: "Timing scenarios", href: "../lesson_11/simulation_file_lession_11.sim1", text: "Advanced timing checks for validating loop and delay behavior." },
+            { id: "lesson_12", title: "PWM + ADC", href: "../lesson_12/simulation_file_lession_12.sim1", text: "Observe analog input response and PWM output behavior together." }
+        ];
+
+        const root = document.documentElement;
+        const body = document.body;
+        const themeButton = document.getElementById("themeButton");
+        const themeIcon = document.getElementById("themeIcon");
+        const menuButton = document.getElementById("menuButton");
+        const navLinks = Array.from(document.querySelectorAll("[data-nav-link]"));
+        const lessonSearch = document.getElementById("lessonSearch");
+        const filters = Array.from(document.querySelectorAll(".filter"));
+        const lessonGrid = document.getElementById("lessonGrid");
+        const lessonCount = document.getElementById("lessonCount");
+        const emptyState = document.getElementById("emptyState");
+        const detailId = document.getElementById("detailId");
+        const detailTitle = document.getElementById("detailTitle");
+        const detailText = document.getElementById("detailText");
+        const detailTags = document.getElementById("detailTags");
+        const openLesson = document.getElementById("openLesson");
+        const commandPreview = document.getElementById("commandPreview");
+        const copyCommand = document.getElementById("copyCommand");
+        const simStage = document.getElementById("simStage");
+        const simControls = document.getElementById("simControls");
+        const ratingButtons = Array.from(document.querySelectorAll(".rating"));
+        const feedbackForm = document.getElementById("feedbackForm");
+        const feedbackText = document.getElementById("feedbackText");
+        const formStatus = document.getElementById("formStatus");
+        const toast = document.getElementById("toast");
+
+        let activeFilter = "all";
+        let selectedLesson = lessons[0];
+        let selectedRating = 0;
+        let toastTimer;
+
+        function iconMoon() {
+            return '<path d="M20.5 14.4A7.8 7.8 0 0 1 9.6 3.5 8.8 8.8 0 1 0 20.5 14.4Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />';
+        }
+
+        function iconSun() {
+            return '<path d="M12 3v2.2M12 18.8V21M4.2 4.2l1.6 1.6M18.2 18.2l1.6 1.6M3 12h2.2M18.8 12H21M4.2 19.8l1.6-1.6M18.2 5.8l1.6-1.6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" /><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.8" />';
+        }
+
+        function showToast(message) {
+            toast.textContent = message;
+            toast.classList.add("is-visible");
+            window.clearTimeout(toastTimer);
+            toastTimer = window.setTimeout(() => toast.classList.remove("is-visible"), 2400);
+        }
+
+        function setTheme(nextTheme) {
+            root.setAttribute("data-theme", nextTheme);
+            themeButton.setAttribute("aria-label", nextTheme === "dark" ? "Switch to light mode" : "Switch to dark mode");
+            themeIcon.innerHTML = nextTheme === "dark" ? iconMoon() : iconSun();
+            try {
+                localStorage.setItem("avr-theme", nextTheme);
+            } catch (error) {
+                return;
+            }
+        }
+
+        function renderLessons() {
+            lessonGrid.innerHTML = lessons.map((lesson, index) => `
+                <button class="lesson-card" type="button" role="option" id="${lesson.id}-card" data-id="${lesson.id}" data-level="${lesson.level}" data-search="${lesson.id} ${lesson.search}" aria-selected="${index === 0 ? "true" : "false"}">
+                    <span class="card-top"><span class="lesson-id">${lesson.id}</span><span class="level">${lesson.level}</span></span>
+                    <span><span class="card-title">${lesson.title}</span><p>${lesson.text}</p></span>
+                    <span class="card-foot"><span class="tags">${lesson.tags.map(tag => `<span class="tag">${tag}</span>`).join("")}</span></span>
+                </button>
+            `).join("");
+
+            lessonGrid.addEventListener("click", event => {
+                const card = event.target.closest(".lesson-card");
+                if (!card) return;
+                const lesson = lessons.find(item => item.id === card.dataset.id);
+                if (lesson) selectLesson(lesson);
+            });
+
+            lessonGrid.addEventListener("keydown", event => {
+                const current = event.target.closest(".lesson-card");
+                if (!current) return;
+                const visibleCards = Array.from(lessonGrid.querySelectorAll(".lesson-card:not([hidden])"));
+                const currentIndex = visibleCards.indexOf(current);
+                const nextIndex = event.key === "ArrowRight" || event.key === "ArrowDown" ? currentIndex + 1 : event.key === "ArrowLeft" || event.key === "ArrowUp" ? currentIndex - 1 : currentIndex;
+                if (nextIndex !== currentIndex && visibleCards[nextIndex]) {
+                    event.preventDefault();
+                    visibleCards[nextIndex].focus();
+                }
+            });
+        }
+
+        function selectLesson(lesson) {
+            selectedLesson = lesson;
+            document.querySelectorAll(".lesson-card").forEach(card => {
+                card.setAttribute("aria-selected", String(card.dataset.id === lesson.id));
+            });
+            detailId.textContent = lesson.id;
+            detailTitle.textContent = lesson.title;
+            detailText.textContent = lesson.text;
+            detailTags.innerHTML = lesson.tags.map(tag => `<span class="tag">${tag}</span>`).join("");
+            openLesson.href = lesson.href;
+            commandPreview.textContent = `cd ${lesson.id}\nmake create`;
+        }
+
+        function applyFilters() {
+            const search = lessonSearch.value.trim().toLowerCase();
+            let visible = 0;
+
+            document.querySelectorAll(".lesson-card").forEach(card => {
+                const matchesSearch = !search || card.dataset.search.toLowerCase().includes(search);
+                const matchesLevel = activeFilter === "all" || card.dataset.level === activeFilter;
+                const isVisible = matchesSearch && matchesLevel;
+                card.hidden = !isVisible;
+                if (isVisible) visible += 1;
+            });
+
+            lessonCount.textContent = `${visible} shown`;
+            emptyState.classList.toggle("is-visible", visible === 0);
+        }
+
+        function renderSimulations() {
+            simStage.innerHTML = simulations.map((sim, index) => `
+                <article class="sim-card ${index === 0 ? "is-active" : ""}" id="${sim.id}-panel" aria-labelledby="${sim.id}-tab">
+                    <div>
+                        <span class="lesson-id">${sim.id}</span>
+                        <h3>${sim.title}</h3>
+                        <p>${sim.text}</p>
+                        <a class="button primary" href="${sim.href}">Open simulation file</a>
+                    </div>
+                    <div class="sim-visual" role="img" aria-label="Abstract signal trace graphic for ${sim.title}">
+                        <svg width="190" height="150" viewBox="0 0 190 150" fill="none" aria-hidden="true">
+                            <path d="M20 100h28V54h31v68h32V35h31v65h28" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" />
+                            <circle cx="48" cy="54" r="7" fill="currentColor" />
+                            <circle cx="111" cy="122" r="7" fill="currentColor" />
+                            <circle cx="142" cy="35" r="7" fill="currentColor" />
+                        </svg>
+                    </div>
+                </article>
+            `).join("");
+
+            simControls.innerHTML = simulations.map((sim, index) => `
+                <button class="sim-tab" id="${sim.id}-tab" type="button" role="tab" aria-selected="${index === 0 ? "true" : "false"}" aria-controls="${sim.id}-panel" data-sim="${sim.id}">
+                    <strong>${sim.id}</strong>
+                    <span>${sim.title}</span>
+                </button>
+            `).join("");
+
+            simControls.addEventListener("click", event => {
+                const tab = event.target.closest(".sim-tab");
+                if (tab) selectSimulation(tab.dataset.sim);
+            });
+        }
+
+        function selectSimulation(simId) {
+            document.querySelectorAll(".sim-card").forEach(panel => {
+                panel.classList.toggle("is-active", panel.id === `${simId}-panel`);
+            });
+            document.querySelectorAll(".sim-tab").forEach(tab => {
+                tab.setAttribute("aria-selected", String(tab.dataset.sim === simId));
+            });
+        }
+
+        function updateActiveNav() {
+            const sections = navLinks
+                .map(link => document.querySelector(link.getAttribute("href")))
+                .filter(Boolean);
+            const current = sections
+                .filter(section => section.getBoundingClientRect().top <= 120)
+                .pop();
+
+            navLinks.forEach(link => {
+                link.setAttribute("aria-current", String(current && link.getAttribute("href") === `#${current.id}`));
+            });
+        }
+
+        themeButton.addEventListener("click", () => {
+            setTheme(root.getAttribute("data-theme") === "dark" ? "light" : "dark");
         });
 
-        // Simple search/filter for lessons and simulations
-        const q = document.getElementById('q');
-        if (q) q.addEventListener('input', (e) => {
-            const v = e.target.value.trim().toLowerCase();
-            document.querySelectorAll('#lessonList li, .sims li').forEach(li => {
-                const t = (li.getAttribute('data-title') || li.textContent).toLowerCase();
-                li.style.display = v === '' || t.includes(v) ? '' : 'none';
+        menuButton.addEventListener("click", () => {
+            const isOpen = body.classList.toggle("nav-open");
+            menuButton.setAttribute("aria-expanded", String(isOpen));
+            menuButton.setAttribute("aria-label", isOpen ? "Close navigation" : "Open navigation");
+        });
+
+        navLinks.forEach(link => {
+            link.addEventListener("click", () => {
+                body.classList.remove("nav-open");
+                menuButton.setAttribute("aria-expanded", "false");
+                menuButton.setAttribute("aria-label", "Open navigation");
             });
         });
+
+        filters.forEach(button => {
+            button.addEventListener("click", () => {
+                activeFilter = button.dataset.filter;
+                filters.forEach(filter => filter.setAttribute("aria-pressed", String(filter === button)));
+                applyFilters();
+            });
+        });
+
+        lessonSearch.addEventListener("input", applyFilters);
+
+        copyCommand.addEventListener("click", async () => {
+            const command = `cd ${selectedLesson.id}\nmake create`;
+            try {
+                await navigator.clipboard.writeText(command);
+                showToast(`Copied build command for ${selectedLesson.id}.`);
+            } catch (error) {
+                showToast(command);
+            }
+        });
+
+        ratingButtons.forEach(button => {
+            button.addEventListener("click", () => {
+                selectedRating = Number(button.dataset.rating);
+                ratingButtons.forEach(item => item.setAttribute("aria-pressed", String(item === button)));
+            });
+        });
+
+        feedbackForm.addEventListener("submit", event => {
+            event.preventDefault();
+            const payload = {
+                rating: selectedRating,
+                text: feedbackText.value.trim(),
+                savedAt: new Date().toISOString()
+            };
+
+            try {
+                localStorage.setItem("avr-graphics-feedback", JSON.stringify(payload));
+                formStatus.textContent = "Saved locally. Thanks for the note.";
+                showToast("Feedback saved locally.");
+            } catch (error) {
+                formStatus.textContent = "Feedback captured in this session.";
+            }
+        });
+
+        window.addEventListener("scroll", updateActiveNav, { passive: true });
+
+        const savedTheme = (() => {
+            try {
+                return localStorage.getItem("avr-theme");
+            } catch (error) {
+                return null;
+            }
+        })();
+
+        setTheme(savedTheme || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"));
+        renderLessons();
+        renderSimulations();
+        selectLesson(lessons[0]);
+        applyFilters();
+        updateActiveNav();
     </script>
 </body>
 
